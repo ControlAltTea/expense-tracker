@@ -34,7 +34,6 @@ Set up your env file to include:
 ```
 npm run build:ui
 <!- Build FrontEnd and Copy Into Backend Folder-->
-
 npm run dev
 ```
 
