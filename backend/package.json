@@ -10,6 +10,9 @@
     "deploy:full": "npm run build:ui",
     "start": "cross-env NODE_ENV=production node --env-file=.env server.js"
   },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -20,10 +23,11 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",

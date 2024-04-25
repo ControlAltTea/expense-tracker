@@ -1,0 +1,30 @@
+# REST CLIENT VSCODE to test api endPoints
+POST http://localhost:3001/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "1Anc!23123"
+}
+
+###
+# Gran Token After POST request and put Bearer <TOKEN>
+###
+GET http://localhost:3001/test HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoiNjYyYTJlNDgxNGMwNWUwZmUxM2U5YjE0IiwiaWF0IjoxNzE0MDQxOTUzLCJleHAiOjE3MTQwNDU1NTN9.E8MwzQMFLJbRzGNpshaGlBh4b7vTs6HG55ECknFdLxE
+
+###
+
+POST http://localhost:3001/api/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "1Anc!23123"
+}
+
+###
+
+GET http://localhost:3001/api/register HTTP/1.1
+
+

@@ -29,11 +29,11 @@ DATABASE_URL="mongodb+srv://<username>:<passord>@<mongodbgiven String>.net/<db>"
 
 ## Bash Script
 
-Set up your env file to include:
-
 ```
-npm run build:ui
 <!- Build FrontEnd and Copy Into Backend Folder-->
+npm run build:ui
+
+<!- Test Backend in Development -->
 npm run dev
 ```
 
