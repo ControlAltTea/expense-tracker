@@ -1,0 +1,14 @@
+.income-container{
+    height: 400px;
+    width: 100vw;
+    /* background-color: lightblue; */
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5rem;
+}
+
+#income-btn{
+    height: 50px;
+    width: 120px;
+    background-color: red;
+}
