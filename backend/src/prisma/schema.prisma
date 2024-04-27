@@ -7,35 +7,52 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String    @unique
-  title    String
-  body     String
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId
-  comments Comment[]
-}
-
+// stores user data: id, email, password, income, expenses, and budgets
 model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  password String
-  address Address?
-  posts   Post[]
+id String @id @default(auto()) @map("_id") @db.ObjectId
+email   String   @unique
+password String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+Income Income[]
+Expense Expense[]
+Budget Budget[]
 }
 
-model Comment {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  comment String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  String @db.ObjectId
+//stores income data: id, amount, category, and frequency(monthly,bi-weekly,weekly,daily) 
+model Income {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+user User @relation(fields: [userId], references: [id])
+userId String @db.ObjectId
+amount Float
+category String
+frequency String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 }
 
-// Address is an embedded document
-type Address {
-  street String
-  city   String
-  state  String
-  zip    String
+//stores expense data: id, amount, category, and frequency(monthly,bi-weekly,weekly,daily)
+model Expense {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+user User @relation(fields: [userId], references: [id])
+userId String @db.ObjectId
+amount Float
+category String
+frequency String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 }
+
+//frequency can be a drop down menu with the options
+
+//stores budget data: id, amount, and category
+model Budget {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+user User @relation(fields: [userId], references: [id])
+userId String @db.ObjectId
+amount Float
+category String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+}
+
