@@ -11,7 +11,7 @@ content-type: application/json
 # Gran Token After POST request and put Bearer <TOKEN>
 ###
 GET http://localhost:3001/test HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoiNjYyYTJlNDgxNGMwNWUwZmUxM2U5YjE0IiwiaWF0IjoxNzE0MDQxOTUzLCJleHAiOjE3MTQwNDU1NTN9.E8MwzQMFLJbRzGNpshaGlBh4b7vTs6HG55ECknFdLxE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoiNjYzMDUyMDgxMTI3OGIyYzgzMTY5MTYwIiwiaWF0IjoxNzE0NDQyNzczLCJleHAiOjE3MTQ0NDYzNzN9.-ghFlydgy78Gf4w_9IEUhdmUbEDYkMgubFFTNBjeNow
 
 ###
 
