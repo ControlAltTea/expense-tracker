@@ -2,49 +2,61 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  //Hook to redirect to a different route
   const navigate = useNavigate();
 
+  // State variable for email and password input fields
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Event handler for email input change
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
   
+  // Event handler for password input change
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
 
+  // Event handler for login form submission
   async function handleLogin(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
 
+    //Backend URLfor login
     const loginUrl = "http://localhost:3001/api/login";
     const data = { email, password };
 
+    //Checks if email or password is missing
     if (!email || !password) {
       alert("Please Fill All Fields");
       return;
     }
 
+    //Try block makes the API request
     try {
-      const response = await fetch(loginUrl, {
+      // Await for fetch API to make a POST request
+      const response = await fetch(loginUrl, { 
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json",   // Set request content type to JSON
         },
         body: JSON.stringify(data),
       });
 
+      // If response is not okay, an error is thrown with the status code
       if (!response.ok) {
         throw new Error(`${response.status}`);
       }
 
+      // Reset input fields back to empty
       setEmail("");
       setPassword("");
 
+      // Redirect to dashboard after successful login
       navigate("/"); 
 
-    } catch (error) {
+    } catch (error) {   // Catch block for handling errors
       console.error(error);
     }
   }
