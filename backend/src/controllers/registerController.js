@@ -8,7 +8,7 @@ exports.test = (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     const user = await prisma.user.findFirst({
@@ -33,6 +33,8 @@ exports.createUser = async (req, res) => {
 
       await prisma.user.create({
         data: {
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           password: hashedPassword,
         },
@@ -44,6 +46,7 @@ exports.createUser = async (req, res) => {
     } catch (error) {
       console.error("Error creating User");
       res.status(500).json({ status: "failed", message: "Internal Error" });
+      console.log(error);
     }
   } catch (error) {
     return res
