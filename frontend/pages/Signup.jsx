@@ -1,43 +1,73 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
+  //method for redirecting page to login after signing up
+  const navigate = useNavigate();
+
+  //declare state for input fields, will hold input values
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleFirstNameChange(e) {
+  //functions to handle changes within input fields
+  //update state values as user types
+  //event as parameter
+  function handleFirstNameChange(e) {
     setFirstName(e.target.value);
-    console.log(e.target.value);
   }
-  async function handleLastNameChange(e) {
+  function handleLastNameChange(e) {
     setLastName(e.target.value);
-    console.log(e.target.value);
   }
-  async function handleEmailChange(e) {
+  function handleEmailChange(e) {
     setEmail(e.target.value);
-    console.log(e.target.value);
   }
-  async function handlePasswordChange(e) {
+  function handlePasswordChange(e) {
     setPassword(e.target.value);
-    console.log(e.target.value);
   }
 
+  //async function to handle signup
+  //called when user clicks sign up
+  //event as parameter
   async function handleSignUp(e) {
+    //prevent default behavior of refreshing page when button is clicked
     e.preventDefault();
 
-    const userData = { firstName, lastName, email, password };
+    //store backend register url in variable
+    const loginUrl = "http://localhost:3001/api/register";
+    //store data as an object in order to post data to database
+    const data = { firstName, lastName, email, password };
 
-
-
+    //conditional statement to ensure that all fields are filled out before signing up
     if (!firstName || !lastName || !email || !password) {
       alert("Please Fill All Fields");
       return;
     }
 
+    //try catch statement
+    //inside try use react's native fetch method to post data to database
     try {
+      const response = await fetch(loginUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+
+      //reset input fields back to empty
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+
+      //redirect to login page so user can log in with newly created account
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
