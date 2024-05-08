@@ -17,10 +17,6 @@ function ExpenseGoals() {
     return `${currentYear}-${currentMonth}-${currentDay}`
   }
 
-  const handleDateChange = (e) => {
-    
-  }
-
   const handleCreateGoal = (e) => {
     e.preventDefault();
     const newGoal = {
