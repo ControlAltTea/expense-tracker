@@ -6,7 +6,7 @@ function ExpenseGoals() {
   const [goals, setGoals] = useState([]);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(getDate(new Date()));
 
   function getDate(date){
     let currentMonth = date.getMonth() + 1; // Adding 1 to make it 1-indexed
@@ -17,20 +17,24 @@ function ExpenseGoals() {
     return `${currentYear}-${currentMonth}-${currentDay}`
   }
 
+  const handleDateChange = (e) => {
+    
+  }
+
   const handleCreateGoal = (e) => {
     e.preventDefault();
     const newGoal = {
       description: description,
       amount: amount,
-      // date: date.toDateString(),
-      date: getDate(date)
+      date: date
+      
     };
-    console.log(newGoal);
+    console.log(newGoal)
 
     setGoals([...goals, newGoal]);
     setDescription("");
     setAmount("");
-    setDate(new Date());
+    setDate(getDate(new Date()));
 
   };
 
@@ -107,8 +111,8 @@ function ExpenseGoals() {
                   aria-label="Date"
                   type="date"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={getDate(date)}
-                  onChange={(e) => setDate(new Date(e.target.value))}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                 />
               </div>
             </div>
