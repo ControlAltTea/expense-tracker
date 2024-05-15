@@ -2,10 +2,12 @@ import { useState, React } from "react";
 import DatePicker from "react-date-picker";
 
 function ExpenseGoals() {
+  //states to hold drop down menu selections
   const [expenseRecurrence, setExpenseRecurrence] = useState("");
   const [incomeRecurrence, setIncomeRecurrence] = useState("");
   const [category, setCategory] = useState("");
 
+  //handle drop down menu selection changes
   function handleIncomeRecurrenceChange(incomeRecurrence) {
     setIncomeRecurrence(incomeRecurrence);
     console.log(incomeRecurrence);
