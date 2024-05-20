@@ -17,9 +17,13 @@ passport.use(
     try {
       const user = await prisma.user.findFirst({
         where: {
-          id: jwtPayload.sub,
+          id: jwtPayload.id,
+        },
+        select: {
+          id: true,
         },
       });
+
       if (user) {
         return done(null, user);
       } else {
