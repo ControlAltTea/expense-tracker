@@ -4,7 +4,7 @@ A web application to help you track your finances.
 
 ## Description
 
-User is able to sign up for an account and log in. User's data is saved on a database and is accessible when a user is logged in.Functionalities include creating savings goals, adding income, and adding expenses.
+User is able to sign up for an account and log in. User's data is saved on a database and is accessible when a user is logged in. Functionalities include creating savings goals, adding income, and adding expenses.
 
 ## Getting Started
 
