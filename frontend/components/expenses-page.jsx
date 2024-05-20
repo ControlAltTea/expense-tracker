@@ -167,7 +167,7 @@ function ExpenseGoals() {
 
               <div className="mb-5">
                 <label
-                  for="base-input"
+                  htmlFor="base-input"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Description
@@ -184,7 +184,7 @@ function ExpenseGoals() {
               <div className="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
                   <label
-                    for="amount"
+                    htmlFor="amount"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Amount
