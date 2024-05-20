@@ -1,0 +1,107 @@
+# REST CLIENT VSCODE to test api endPoints
+POST http://localhost:3001/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "1111111@gmail.com",
+    "password": "1Anc!23123"
+}
+
+###
+# Gran Token After POST request and put Bearer <TOKEN>
+###
+GET http://localhost:3001/api/dashboard HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDY0NzgsImV4cCI6MTcxNjIxMDA3OH0.30kguYGkl23C0NpmjFMCsK9-Qv54HwBqZBrRM4TKYSE 
+
+
+###
+
+GET http://localhost:3001/api/expense HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+
+###
+POST http://localhost:3001/api/expense/addExpense HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU5MjgsImV4cCI6MTcxNjIwOTUyOH0.iaSgwL_bsnhdLxSUa8WOadgDOqLu5MVs97FyLjnE99s
+Content-Type: application/json
+
+{
+  "amount": "1002",
+  "category": "travel",
+  "description": "description",
+  "frequency": "frequency",
+  "targetDate": "date2023"
+}
+
+###
+
+POST http://localhost:3001/api/expense/addIncome HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+Content-Type: application/json
+
+{
+  "amount": "100",
+  "description": "description",
+  "frequency": "frequency",
+  "targetDate": "date2023"
+}
+
+###
+POST http://localhost:3001/api/expense/addSaving HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU1NjgsImV4cCI6MTcxNjIwOTE2OH0.tN8P_-1CEltI2c4ld6WKkWH5xQwWU6___v18PdIfaIk
+Content-Type: application/json
+
+{
+  "amount": "100",
+  "description": "description",
+  "targetDate": "date2023"
+}
+
+
+###
+PUT  http://localhost:3001/api/expense/updateExpense/664b259704383fac32ef18fa HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+Content-Type: application/json
+
+{
+	"amount": "200",
+  "category": "food",
+  "description": "yummy",
+  "frequency": "daily",
+  "targetDate": "date2023"
+}
+
+###
+Put http://localhost:3001/api/expense/updateIncome/664b304c1ffff705e9790a89 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+Content-Type: application/json
+
+{
+  "amount": "3000",
+  "category": "contract",
+  "description": "Money",
+  "frequency": "frequency",
+  "targetDate": "date2023"
+}
+
+###
+Put http://localhost:3001/api/expense/updateSaving/664b35a4a7457c60b8b04baa HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+Content-Type: application/json
+
+{
+  "amount": "3000",
+  "description": "Money",
+  "targetDate": "date2023"
+}
+
+###
+DELETE http://localhost:3001/api/expense/deleteExpense/6632cd153368c0e30b355baa HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYxOTgwOTYsImV4cCI6MTcxNjIwMTY5Nn0.FrZiIUyYaPAaqfdX4qKiGuMh4obR1HhPMwxh4xihsuY
+Content-Type: application/json
+
+
+###
+
+DELETE http://localhost:3001/api/expense/deleteSaving/664b3824a203be1ac073fc1f HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU1NjgsImV4cCI6MTcxNjIwOTE2OH0.tN8P_-1CEltI2c4ld6WKkWH5xQwWU6___v18PdIfaIk
+Content-Type: application/json

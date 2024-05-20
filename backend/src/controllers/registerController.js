@@ -4,6 +4,7 @@ const passwordRequirement = require("../utils/passwordRequirement");
 
 exports.test = (req, res) => {
   console.log("testing");
+  console.log(req.userToken);
   res.send("tesing");
 };
 
