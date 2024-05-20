@@ -49,25 +49,6 @@ function ExpenseGoals() {
     setDate(getDate(new Date()));
   };
 
-  //Add Income
-  const [income, setIncome] = useState([]);
-  const [description2, setDescription2] = useState("");
-  const [amount2, setAmount2] = useState("");
-  const [date2, setDate2] = useState(new Date());
-
-  const handleCreateIncome = (e) => {
-    e.preventDefault();
-    const newIncome = {
-      description: description2,
-      amount: amount2,
-      date: date2.toDateString(),
-    };
-    setIncome([...income, newIncome]);
-    setDescription2("");
-    setAmount2("");
-    setDate2(new Date());
-  };
-
   //Enter Expenses
   const [expenseDescription, setExpenseDescription] = useState(""); // define empty string for initial expense description
   const [expenses, setExpenses] = useState([]); // define empty array for expenses

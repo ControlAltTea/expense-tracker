@@ -6,8 +6,8 @@ import { dummyIncome } from "../../dummyData/dummyData";
 function RenderIncome() {
   return (
     <>
-      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-        <div>
+      <div className="w-full h-fit bg-white border border-gray-200 rounded-lg shadow">
+        <div className="mt-28">
           
           {/* use map() to dynamically render dummyIncome as a list */}
           <ul>
