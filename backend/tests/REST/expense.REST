@@ -11,7 +11,7 @@ content-type: application/json
 # Gran Token After POST request and put Bearer <TOKEN>
 ###
 GET http://localhost:3001/api/dashboard HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDY0NzgsImV4cCI6MTcxNjIxMDA3OH0.30kguYGkl23C0NpmjFMCsK9-Qv54HwBqZBrRM4TKYSE 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMjMxMTExQGdtYWlsLmNvbSIsImlkIjoiNjY0YmVjZjJmODFhYzk2NmUyMjA1MTIxIiwiaWF0IjoxNzE2MjUxOTA4LCJleHAiOjE3MTYyNTU1MDh9.TtUVUWJEtkQO996rlke3EKHQpE36BH2lfXQwJD41Wv4 
 
 
 ###

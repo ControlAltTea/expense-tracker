@@ -7,10 +7,12 @@ Backend Application for Expense Tracker
 Application handle the backend of expense Tracker.
 Dependies Used:
 
+- Bycrpt
+- Cors
 - Express
 - Mongo
 - Prisma
-- Bycrpt
+- Passport
 
 ## ENV FILE
 
