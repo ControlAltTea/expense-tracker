@@ -24,6 +24,9 @@ function RenderIncome({ incomeData }) {
       if (!deleteResponse.ok) {
         throw new Error(`${deleteResponse.status}`);
       }
+
+      console.log("Data Deleted Successfully")
+
     } catch (error) {
       console.error(error);
     }

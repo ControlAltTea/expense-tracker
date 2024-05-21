@@ -17,7 +17,6 @@ function IncomeForm() {
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
-
   //function that handles changes in our form
   //takes in the event parameter
   //extracts the name and value properties from the event,
@@ -60,47 +59,55 @@ function IncomeForm() {
         throw new Error(`${postResponse.status}`);
       }
 
+      console.log("Data Posted Successfully");
+
       //reset the inputs by setting formData back to emptyForm
       setFormData(emptyForm);
-
-
     } catch (error) {
       //catch block for handling errors
       console.error(error);
     }
   }
 
-//useEffect(()=> {},[]) so when component mounts, code inside is ran
-//get data from backend api, include token authorization
-  useEffect(()=> {
+  //useEffect(()=> {},[]) so when component mounts, code inside is ran
+  //get data from backend api, include token authorization
+  useEffect(() => {
     const token = sessionStorage.getItem("jwt-token");
+
     async function getData() {
       //await for fetch to make a GET request
       let dashboardUrl = "http://localhost:3001/api/dashboard";
-      const getResponse = await fetch(dashboardUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json", // Set request content type to JSON
-          Authorization: `Bearer ${token}`,
-        },
-      });
-        
-      //if response is not succesful then throw error status
-      if (!getResponse.ok) {
-        throw new Error(`${getResponse.status}`);
-      }
-  
-      //parse json and produce javascript object
-      //store in data variable
-      const data = await getResponse.json();
-      //store income data in incomeData state variable
-      setIncomeData(data.data.Income);
-    }
 
+      try {
+        const getResponse = await fetch(dashboardUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json", // Set request content type to JSON
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        //if response is not succesful then throw error status
+        if (!getResponse.ok) {
+          throw new Error(`${getResponse.status}`);
+        }
+
+        //parse json and produce javascript object
+        //store in data variable
+        const data = await getResponse.json();  
+
+        console.log("Data Retrieved Successfully")
+
+        //store income data in incomeData state variable
+        setIncomeData(data.data.Income);
+      } catch (error) {
+        //catch block for handling errors
+        console.error(error);
+      }
+    }
     //call the getData() function when component mounts
     getData();
-  },[])
-
+  }, []);
 
   return (
     <>
@@ -217,7 +224,6 @@ function IncomeForm() {
         <div className="mt-10">
           <RenderIncome incomeData={incomeData} />
         </div>
-
       </div>
     </>
   );
