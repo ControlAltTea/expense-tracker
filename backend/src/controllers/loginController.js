@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  
 
   try {
     const user = await prisma.user.findFirstOrThrow({
@@ -14,7 +15,7 @@ exports.loginUser = async (req, res) => {
     });
 
     let passwordCorrect = await bcrypt.compare(password, user.password);
-
+    console.log(email, password);
     if (!passwordCorrect) {
       return res
         .status(401)

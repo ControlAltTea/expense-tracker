@@ -4,7 +4,7 @@ import React from "react";
 function Navbar() {
   return (
     <nav className="bg-green-300 flex justify-between items-center p-5">
-      <Link class="text-3xl" to="/">
+      <Link className="text-3xl" to="/">
         Expense Tracker
       </Link>
 
