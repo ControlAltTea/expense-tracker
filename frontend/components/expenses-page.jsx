@@ -12,7 +12,6 @@ function ExpenseGoals() {
 
   //states to hold drop down menu selections
   const [expenseRecurrence, setExpenseRecurrence] = useState("");
-  const [incomeRecurrence, setIncomeRecurrence] = useState("");
   const [category, setCategory] = useState("");
 
   function handleExpenseRecurrenceChange(expenseRecurrence) {
@@ -278,8 +277,8 @@ function ExpenseGoals() {
           </div>
 
           <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div className="income">
-              <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+            <div className="income flex">
+              <h5 className="text-xl mr-2 font-medium text-gray-900 dark:text-white">
                 Income
               </h5>
             </div>

@@ -35,19 +35,20 @@ Content-Type: application/json
 ###
 
 POST http://localhost:3001/api/expense/addIncome HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDE5NDMsImV4cCI6MTcxNjIwNTU0M30.Fp_H5lBqN_3YwZSBJRLpEKYEY6HHywei6SEchg9wzSM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiYTI3ZjdmNDFhN2UyNWMzNjA1NjAiLCJpYXQiOjE3MTYyNDM2MzAsImV4cCI6MTcxNjI0NzIzMH0._F948yXPg_s_NKCRhto3dS9j56lcEggB7KqNvy7aIt8
 Content-Type: application/json
 
 {
   "amount": "100",
   "description": "description",
   "frequency": "frequency",
-  "targetDate": "date2023"
+  "targetDate": "date2023",
+  "category": "Freelance Income"
 }
 
 ###
 POST http://localhost:3001/api/expense/addSaving HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU1NjgsImV4cCI6MTcxNjIwOTE2OH0.tN8P_-1CEltI2c4ld6WKkWH5xQwWU6___v18PdIfaIk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiYTI3ZjdmNDFhN2UyNWMzNjA1NjAiLCJpYXQiOjE3MTYyNDI5MjYsImV4cCI6MTcxNjI0NjUyNn0.xY6GKgq0TOssWWy-pgqWK9gO_f4xBhEjra10etzhE3g
 Content-Type: application/json
 
 {

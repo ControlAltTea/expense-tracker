@@ -10,6 +10,8 @@ exports.getUser = async (req, res) => {
         id: true,
         Income: {
           select: {
+            //added id to send delete request to "/deleteIncome/${:id}" for specific income
+            id: true,
             amount: true,
             category: true,
             description: true,

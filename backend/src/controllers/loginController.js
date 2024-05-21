@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-  
+
 
   try {
     const user = await prisma.user.findFirstOrThrow({
@@ -26,6 +26,7 @@ exports.loginUser = async (req, res) => {
       email: user.email,
       id: user.id,
     };
+
     const token = jwt.sign(userToken, "process.env.SECRET_KEY", {
       expiresIn: "1h",
     });
@@ -36,8 +37,8 @@ exports.loginUser = async (req, res) => {
   } catch (error) {
     return (error.code = "P205"
       ? res
-          .status(401)
-          .json({ status: "failed", message: "Invalid User or Password" })
+        .status(401)
+        .json({ status: "failed", message: "Invalid User or Password" })
       : res.status(500).json({ status: "failed", message: "Internal Error" }));
   }
 };

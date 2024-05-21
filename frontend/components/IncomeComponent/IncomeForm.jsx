@@ -1,8 +1,7 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import RenderIncome from "./RenderIncome";
-import { addIncome } from "../../dummyData/dummyData";
 
-//component responsible for recieving inputted data
+//component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
   //an object that holds respective income properties and is set to empty strings
   const emptyForm = {
@@ -10,20 +9,23 @@ function IncomeForm() {
     category: "",
     description: "",
     frequency: "",
-    date: "",
+    targetDate: "",
   };
 
+  //state to hold data from database
+  const [incomeData, setIncomeData] = useState([]);
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
-  //function that handles changes in our inputs
+
+  //function that handles changes in our form
   //takes in the event parameter
   //extracts the name and value properties from the event,
   //update the formData state whenever change is detected
   //retains previous state by using spread operator and sets the value according to input
   function handleChange(e) {
     const { name, value } = e.target;
-    //for example: for description input -> name=description, value=what is inputted
+    //for example: for description field -> name=description, value=what is inputted
     setFormData(function (prevState) {
       return {
         ...prevState,
@@ -34,13 +36,71 @@ function IncomeForm() {
 
   //function that handles form submission
   //e.preventDefault() to prevent default behavior of button refreshing page when clicked
-  //when form is submitted, call the function from dummyData.js to push form's data to dummyIncome array
-  //reset the inputs by setting formData back to emptyForm
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    addIncome(formData);
-    setFormData(emptyForm);
+
+    const token = sessionStorage.getItem("jwt-token");
+    let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
+
+    try {
+      //await for fetch to make a POST request
+      //included authorization in headers
+      //token taken from browser's session storage when user logged in
+      const postResponse = await fetch(addIncomeUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Set request content type to JSON
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      //if response is not succesful then throw error status
+      if (!postResponse.ok) {
+        throw new Error(`${postResponse.status}`);
+      }
+
+      //reset the inputs by setting formData back to emptyForm
+      setFormData(emptyForm);
+
+
+    } catch (error) {
+      //catch block for handling errors
+      console.error(error);
+    }
   }
+
+//useEffect(()=> {},[]) so when component mounts, code inside is ran
+//get data from backend api, include token authorization
+  useEffect(()=> {
+    const token = sessionStorage.getItem("jwt-token");
+    async function getData() {
+      //await for fetch to make a GET request
+      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      const getResponse = await fetch(dashboardUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json", // Set request content type to JSON
+          Authorization: `Bearer ${token}`,
+        },
+      });
+        
+      //if response is not succesful then throw error status
+      if (!getResponse.ok) {
+        throw new Error(`${getResponse.status}`);
+      }
+  
+      //parse json and produce javascript object
+      //store in data variable
+      const data = await getResponse.json();
+      //store income data in incomeData state variable
+      setIncomeData(data.data.Income);
+    }
+
+    //call the getData() function when component mounts
+    getData();
+  },[])
+
 
   return (
     <>
@@ -94,9 +154,9 @@ function IncomeForm() {
                 <input
                   aria-label="Date"
                   type="date"
-                  name="date"
+                  name="targetDate"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={formData.date}
+                  value={formData.targetDate}
                   onChange={handleChange}
                   required
                 />
@@ -153,9 +213,11 @@ function IncomeForm() {
           </form>
         </div>
 
+        {/* pass incomeData as a prop to render in RenderIncome component */}
         <div className="mt-10">
-          <RenderIncome />
+          <RenderIncome incomeData={incomeData} />
         </div>
+
       </div>
     </>
   );
