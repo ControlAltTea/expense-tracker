@@ -4,6 +4,9 @@ import RenderIncome from "./RenderIncome";
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
   //an object that holds respective income properties and is set to empty strings
+
+  const token = sessionStorage.getItem("jwt-token");
+
   const emptyForm = {
     amount: "",
     category: "",
@@ -16,6 +19,7 @@ function IncomeForm() {
   const [incomeData, setIncomeData] = useState([]);
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
+
 
   //function that handles changes in our form
   //takes in the event parameter
@@ -38,7 +42,6 @@ function IncomeForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const token = sessionStorage.getItem("jwt-token");
     let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
 
     try {
@@ -59,6 +62,7 @@ function IncomeForm() {
         throw new Error(`${postResponse.status}`);
       }
 
+      console.log(await postResponse.json());
       console.log("Data Posted Successfully");
 
       //reset the inputs by setting formData back to emptyForm
@@ -72,7 +76,6 @@ function IncomeForm() {
   //useEffect(()=> {},[]) so when component mounts, code inside is ran
   //get data from backend api, include token authorization
   useEffect(() => {
-    const token = sessionStorage.getItem("jwt-token");
 
     async function getData() {
       //await for fetch to make a GET request
@@ -96,6 +99,7 @@ function IncomeForm() {
         //store in data variable
         const data = await getResponse.json();  
 
+      
         console.log("Data Retrieved Successfully")
 
         //store income data in incomeData state variable
