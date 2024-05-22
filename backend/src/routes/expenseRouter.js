@@ -2,6 +2,7 @@ const express = require("express");
 const expenseRouter = express.Router();
 const expenseController = require("../controllers/expenseController");
 const prisma = require("../utils/db/prismaClient");
+const { deleteModel } = require("mongoose");
 
 expenseRouter.get("/", (req, res) => {
   res.send(req.user);
@@ -21,16 +22,16 @@ expenseRouter.post("/addExpense", async (req, res) => {
         targetDate: expense.targetDate,
       },
     });
+    return res.status(200).json({
+      status: "success",
+      message: "New Expense Created",
+      data: expenseData,
+    });
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res
-    .status(200)
-    .json({ status: "success", message: "New Expense Created" });
 });
 
 expenseRouter.put("/updateExpense/:id", async (req, res) => {
@@ -49,26 +50,11 @@ expenseRouter.put("/updateExpense/:id", async (req, res) => {
         targetDate: expense.targetDate || undefined,
       },
     });
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(400)
-      .json({ status: "failed", message: "Internal Error" });
-  }
 
-  return res
-    .status(200)
-    .json({ status: "success", message: "Expense Updated" });
-});
-
-expenseRouter.delete("/deleteExpense/:id", async (req, res) => {
-  const expenseId = req.params.id;
-
-  try {
-    const deleteExpense = await prisma.expense.delete({
-      where: {
-        id: expenseId,
-      },
+    return res.status(200).json({
+      status: "success",
+      message: "Expense Updated",
+      data: updateExpense,
     });
   } catch (error) {
     console.log(error);
@@ -76,8 +62,29 @@ expenseRouter.delete("/deleteExpense/:id", async (req, res) => {
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
+});
 
-  return res.status(200).json({ status: "success", message: "Expense Delete" });
+expenseRouter.delete("/deleteExpense/:id", async (req, res) => {
+  const expenseId = req.params.id;
+  try {
+    const deleteExpense = await prisma.expense.delete({
+      where: {
+        id: expenseId,
+      },
+    });
+
+    console.log(deleteExpense);
+
+    return res.status(200).json({
+      status: "success",
+      message: "Expense Delete",
+      data: deleteExpense.id,
+    });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ status: "failed", message: "Internal Error" });
+  }
 });
 
 //Income
@@ -95,16 +102,16 @@ expenseRouter.post("/addIncome", async (req, res) => {
         targetDate: expense.targetDate,
       },
     });
+    return res.status(200).json({
+      status: "success",
+      message: "New Income Created",
+      data: incomeData,
+    });
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res
-    .status(200)
-    .json({ status: "success", message: "New Income Created" });
 });
 
 expenseRouter.put("/updateIncome/:id", async (req, res) => {
@@ -123,14 +130,17 @@ expenseRouter.put("/updateIncome/:id", async (req, res) => {
         targetDate: expense.targetDate || undefined,
       },
     });
+    return res.status(200).json({
+      status: "success",
+      message: "Income Updated",
+      data: updateIncome,
+    });
   } catch (error) {
     console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res.status(200).json({ status: "success", message: "Income Updated" });
 });
 
 expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
@@ -142,14 +152,14 @@ expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
         id: expenseId,
       },
     });
+    return res
+      .status(200)
+      .json({ status: "success", message: "Income Delete", data: data.id });
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res.status(200).json({ status: "success", message: "Income Delete" });
 });
 // Saving
 expenseRouter.post("/addSaving", async (req, res) => {
@@ -167,10 +177,9 @@ expenseRouter.post("/addSaving", async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
-      .json({ status: "failed", message: "Internal Error" });
+      .json({ status: "failed", message: "Internal Error", data: savingData });
   }
 
   return res
@@ -194,14 +203,17 @@ expenseRouter.put("/updateSaving/:id", async (req, res) => {
         targetDate: saving.targetDate || undefined,
       },
     });
+    return res.status(200).json({
+      status: "success",
+      message: "Saving Updated",
+      data: updateIncome,
+    });
   } catch (error) {
     console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res.status(200).json({ status: "success", message: "Saving Updated" });
 });
 
 expenseRouter.delete("/deleteSaving/:id", async (req, res) => {
@@ -213,14 +225,17 @@ expenseRouter.delete("/deleteSaving/:id", async (req, res) => {
         id: savingId,
       },
     });
+    return res.status(200).json({
+      status: "success",
+      message: "Saving Delete",
+      data: deleteIncome.id,
+    });
   } catch (error) {
     console.log(error);
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
   }
-
-  return res.status(200).json({ status: "success", message: "Saving Delete" });
 });
 
 module.exports = expenseRouter;

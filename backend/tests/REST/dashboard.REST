@@ -1,1 +1,6 @@
+###
 GET http://localhost:3001/api/dashboard HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMjMxMTExQGdtYWlsLmNvbSIsImlkIjoiNjY0YmVjZjJmODFhYzk2NmUyMjA1MTIxIiwiaWF0IjoxNzE2MjU0OTA4LCJleHAiOjE3MTYyNTg1MDh9.iJ3koFuuwDXws6d5khYWWdG83U0kYQ2CSwUgHIM2PhA
+
+
+

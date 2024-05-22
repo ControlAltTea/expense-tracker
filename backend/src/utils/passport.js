@@ -21,6 +21,8 @@ passport.use(
         },
         select: {
           id: true,
+          firstName: true,
+          lastName: true,
         },
       });
 
