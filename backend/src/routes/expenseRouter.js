@@ -82,6 +82,7 @@ expenseRouter.delete("/deleteExpense/:id", async (req, res) => {
 
 //Income
 //added category
+
 expenseRouter.post("/addIncome", async (req, res) => {
   const expense = req.body;
 
@@ -95,6 +96,7 @@ expenseRouter.post("/addIncome", async (req, res) => {
         category: expense.category,
         frequency: expense.frequency,
         targetDate: expense.targetDate
+
       },
     });
   } catch (error) {

@@ -44,11 +44,12 @@ Content-Type: application/json
   "frequency": "frequency",
   "targetDate": "date2023",
   "category": "Freelance Income"
+
 }
 
 ###
 POST http://localhost:3001/api/expense/addSaving HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiYTI3ZjdmNDFhN2UyNWMzNjA1NjAiLCJpYXQiOjE3MTYyNDI5MjYsImV4cCI6MTcxNjI0NjUyNn0.xY6GKgq0TOssWWy-pgqWK9gO_f4xBhEjra10etzhE3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU1NjgsImV4cCI6MTcxNjIwOTE2OH0.tN8P_-1CEltI2c4ld6WKkWH5xQwWU6___v18PdIfaIk
 Content-Type: application/json
 
 {

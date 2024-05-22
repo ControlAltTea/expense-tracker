@@ -21,6 +21,7 @@ exports.getUser = async (req, res) => {
         },
         Saving: {
           select: {
+            id:true,
             amount: true,
             targetDate: true,
             description: true,
@@ -28,6 +29,7 @@ exports.getUser = async (req, res) => {
         },
         Expense: {
           select: {
+            id: true,
             amount: true,
             category: true,
             description: true,

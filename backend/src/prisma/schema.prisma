@@ -9,6 +9,7 @@ generator client {
 
 // stores user data: id, email, password, income, expenses, and budgets
 model User {
+
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   email     String    @unique
   firstName String
@@ -21,7 +22,7 @@ model User {
   Budget    Budget[]
   Saving    Saving[]
 }
-
+ 
 //stores income data: id, amount, category, description and frequency(monthly,bi-weekly,weekly,daily) 
 //added targetDate
 model Income {
