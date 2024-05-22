@@ -11,7 +11,7 @@ content-type: application/json
 # Gran Token After POST request and put Bearer <TOKEN>
 ###
 GET http://localhost:3001/api/dashboard HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDY0NzgsImV4cCI6MTcxNjIxMDA3OH0.30kguYGkl23C0NpmjFMCsK9-Qv54HwBqZBrRM4TKYSE 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJuYW1lIjoiVmluc29uIC0tLS0iLCJpYXQiOjE3MTYzNDM1OTMsImV4cCI6MTcxNjM0NzE5M30.PCdnEMuNEHRbYOcKH6HQbSFMF3Dqr-szsuR0rFiQHZs 
 
 
 ###
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExM
 
 ###
 POST http://localhost:3001/api/expense/addExpense HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU5MjgsImV4cCI6MTcxNjIwOTUyOH0.iaSgwL_bsnhdLxSUa8WOadgDOqLu5MVs97FyLjnE99s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJuYW1lIjoiVmluc29uIC0tLS0iLCJpYXQiOjE3MTYzNDM1OTMsImV4cCI6MTcxNjM0NzE5M30.PCdnEMuNEHRbYOcKH6HQbSFMF3Dqr-szsuR0rFiQHZs
 Content-Type: application/json
 
 {
@@ -97,13 +97,13 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/expense/deleteExpense/6632cd153368c0e30b355baa HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYxOTgwOTYsImV4cCI6MTcxNjIwMTY5Nn0.FrZiIUyYaPAaqfdX4qKiGuMh4obR1HhPMwxh4xihsuY
+DELETE http://localhost:3001/api/expense/deleteExpense/664d54ffb954a8dc9ccd3b67 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJuYW1lIjoiVmluc29uIC0tLS0iLCJpYXQiOjE3MTYzNDM1OTMsImV4cCI6MTcxNjM0NzE5M30.PCdnEMuNEHRbYOcKH6HQbSFMF3Dqr-szsuR0rFiQHZs
 Content-Type: application/json
 
 
 ###
 
-DELETE http://localhost:3001/api/expense/deleteSaving/664b3824a203be1ac073fc1f HTTP/1.1
+DELETE http://localhost:3001/api/expense/deleteSaving/664d5559f09b16814e11e3de HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjExMTExMTFAZ21haWwuY29tIiwiaWQiOiI2NjRiMTZhNDgwNDAyY2E2NjgyZWM2NzEiLCJpYXQiOjE3MTYyMDU1NjgsImV4cCI6MTcxNjIwOTE2OH0.tN8P_-1CEltI2c4ld6WKkWH5xQwWU6___v18PdIfaIk
 Content-Type: application/json
