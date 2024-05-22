@@ -1,8 +1,8 @@
 body {
-    background-color: #f0f8ff;
+  background-color: #f0f8ff;
 }
 
-.tracker-container{
+.tracker-container {
   height: 100vw;
   width: 100vw;
   display: flex;
@@ -19,7 +19,7 @@ body {
   margin-top: 5rem;
 }
 
-.data-container{
+.data-container {
   /* height: 400px; */
   width: 100vw;
   display: flex;
