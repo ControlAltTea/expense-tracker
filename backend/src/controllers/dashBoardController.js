@@ -10,6 +10,8 @@ exports.getUser = async (req, res) => {
         id: true,
         Income: {
           select: {
+            //added id to send delete request to "/deleteIncome/${:id}" for specific income
+            id: true,
             amount: true,
             category: true,
             description: true,
@@ -19,6 +21,7 @@ exports.getUser = async (req, res) => {
         },
         Saving: {
           select: {
+            id:true,
             amount: true,
             targetDate: true,
             description: true,
@@ -26,6 +29,7 @@ exports.getUser = async (req, res) => {
         },
         Expense: {
           select: {
+            id: true,
             amount: true,
             category: true,
             description: true,
