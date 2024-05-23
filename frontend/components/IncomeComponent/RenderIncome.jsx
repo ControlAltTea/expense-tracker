@@ -26,8 +26,7 @@ function RenderIncome({ incomeData }) {
       }
 
       console.log(await deleteResponse.json());
-      console.log("Data Deleted Successfully")
-
+      console.log("Data Deleted Successfully");
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +34,12 @@ function RenderIncome({ incomeData }) {
 
   return (
     <>
+      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+          Income
+        </h5>
+      </div>
+      
       <div className="w-full h-fit bg-green-200 border border-gray-200 rounded-lg shadow">
         <div className="mt-28">
           {/* use map() to dynamically render incomeData */}
