@@ -115,7 +115,7 @@ function IncomeForm() {
 
   return (
     <>
-      <div className="">
+      <div className="flex flex-col md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
