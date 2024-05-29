@@ -9,8 +9,8 @@ function ExpenseGoals() {
 
   return (
     <>
-      <div className="flex flex-col">
-        <div className="flex flex-col justify-evenly lg:flex-row">
+      <div className="flex flex-col justify-items-center">
+        <div className="flex flex-col justify-evenly m-8 lg:flex-row">
           <SavingsForm />
 
           <IncomeForm />

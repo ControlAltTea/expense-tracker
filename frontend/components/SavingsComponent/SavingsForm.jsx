@@ -25,7 +25,7 @@ export default function SavingsForm() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row lg:flex-col">
+      <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" action="#" onSubmit={handleCreateGoal}>
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
@@ -90,7 +90,7 @@ export default function SavingsForm() {
           </form>
         </div>
 
-        <div className="mt-10">
+        <div className="w-full h-fit min-w-sm">
           <RenderSavings />
         </div>
       </div>
