@@ -53,7 +53,7 @@ export default function ExpensesForm() {
 
   return (
     <div>
-      <div className="">
+      <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         {/* Expenses Form */}
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" action="#" onSubmit={handleAddExpense}>
@@ -162,7 +162,7 @@ export default function ExpensesForm() {
         </div>
 
         {/* Render Expenses Data */}
-        <div className="mt-10">
+        <div className="w-full h-fit max-w-sm">
           <RenderExpenses expenses={expenses} />
         </div>
       </div>
