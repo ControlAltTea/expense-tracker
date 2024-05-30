@@ -2,7 +2,7 @@ body {
   background-color: #f0f8ff;
 }
 
-.tracker-container {
+/* .tracker-container {
   height: 100vw;
   width: 100vw;
   display: flex;
@@ -12,12 +12,11 @@ body {
 .forms-container {
   height: 400px;
   width: 100vw;
-  /* background-color: lightblue; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 5rem;
-}
+} */
 
 .data-container {
   /* height: 400px; */
@@ -44,10 +43,4 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 4rem;
-}
-
-#income-btn {
-  height: 50px;
-  width: 120px;
-  background-color: red;
 }

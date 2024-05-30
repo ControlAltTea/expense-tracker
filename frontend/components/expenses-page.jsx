@@ -1,5 +1,4 @@
-import { useState, React } from "react";
-import DatePicker from "react-date-picker";
+import React from "react";
 
 // Import expense-tracker components
 import SavingsForm from "./SavingsComponent/SavingsForm";
@@ -10,8 +9,8 @@ function ExpenseGoals() {
 
   return (
     <>
-      <div className="tracker-container">
-        <div className="forms-container">
+      <div className="flex flex-col justify-items-center">
+        <div className="flex flex-col justify-evenly m-8 lg:flex-row">
           <SavingsForm />
 
           <IncomeForm />
