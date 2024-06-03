@@ -194,7 +194,7 @@ function IncomeForm() {
 
         {/* pass incomeData as a prop to render in RenderIncome component */}
         <div className="w-full h-fit max-w-sm">
-          <RenderIncome incomeData={postChange} />
+          <RenderIncome postChange={postChange} />
         </div>
       </div>
     </>
