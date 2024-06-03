@@ -90,9 +90,9 @@ function RenderIncome({ postChange }) {
           Income
         </h5>
       </div>
-
-      <div className="w-full h-fit bg-green-200 border border-gray-200 rounded-lg shadow">
-        <div className="">
+      
+      <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
+        <div className="mt-28">
           {/* use map() to dynamically render updatedData */}
           <ul>
             {incomeData.map((income, key) => (
