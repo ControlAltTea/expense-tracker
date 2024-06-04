@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+//Import context from App.jsx
+import { AuthContext } from "../src/App";
 
 function Login() {
   //Hook to redirect to a different route
@@ -8,6 +11,10 @@ function Login() {
   // State variable for email and password input fields
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //Destructure setLoggedIn from context
+  //Accessible from App.jsx
+  const {setLoggedIn} = useContext(AuthContext);
 
   // Event handler for email input change
   function handleEmailChange(e) {
@@ -55,8 +62,11 @@ function Login() {
         setEmail("");
         setPassword("");
 
+        //Set loggedIn state to true
+        setLoggedIn(true);
+
         // Redirect to dashboard after successful login
-        navigate("/");
+        navigate("/dashboard");
       } else {
         throw new Error(`${response.status}`);
       }
@@ -86,14 +96,14 @@ function Login() {
                   onChange={handleEmailChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Password
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={handlePasswordChange}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <div className="flex justify-center px-4 py-6">

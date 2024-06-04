@@ -1,14 +1,9 @@
-import React from "react";
-import ExpenseGoals from "../components/expenses-page";
+import React from 'react'
 
 function Home() {
   return (
-    <div>
-      <div>
-        <ExpenseGoals />
-      </div>
-    </div>
-  );
+    <div>Home</div>
+  )
 }
 
-export default Home;
+export default Home
