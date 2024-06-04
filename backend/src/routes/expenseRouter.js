@@ -156,10 +156,13 @@ expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
         id: expenseId,
       },
     });
+
     return res
       .status(200)
-      .json({ status: "success", message: "Income Delete", data: data.id });
+      .json({ status: "success", message: "Income Delete", data: expenseId.id });
+
   } catch (error) {
+
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });

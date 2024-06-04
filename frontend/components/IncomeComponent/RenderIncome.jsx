@@ -1,10 +1,21 @@
 import { React, useEffect, useState } from "react";
 
 //pass incomeData from parent component to render dynamically here
-function RenderIncome({ incomeData }) {
+function RenderIncome({ postChange }) {
+  //grab token from browser to authenticate user by using token in get & delete request headers
+  const token = sessionStorage.getItem("jwt-token");
+
+  //state to store user's income data
+  const [incomeData, setIncomeData] = useState([]);
+
+  //state to detect when delete request is made, state used in useEffect to trigger get request to render data
+  //backend's delete response is stored here
+  const [deleteChange, setDeleteChange] = useState('');
+
+
   //function to delete income
   //send delete request to backend api
-  //takes id as parameter
+  //takes id as parameter to delete specific income, id is used at the end of backend's url
   async function deleteIncome(id) {
     const token = sessionStorage.getItem("jwt-token");
     const deleteIncomeUrl = `http://localhost:3001/api/expense/deleteIncome/${id}`;
@@ -25,12 +36,52 @@ function RenderIncome({ incomeData }) {
         throw new Error(`${deleteResponse.status}`);
       }
 
-      console.log(await deleteResponse.json());
-      console.log("Data Deleted Successfully");
+      //store response in deleteChange state
+      setDeleteChange(await deleteResponse.json());
+      console.log("User Data Deleted");
     } catch (error) {
       console.error(error);
     }
   }
+
+  //useEffect(()=> {},[]) so when component mounts, code inside is ran
+  //get data from backend api, include token authorization
+  useEffect(() => {
+    async function getData() {
+      //await for fetch to make a GET request
+      let dashboardUrl = "http://localhost:3001/api/dashboard";
+
+      try {
+        const getResponse = await fetch(dashboardUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json", // Set request content type to JSON
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        //if response is not succesful then throw error status
+        if (!getResponse.ok) {
+          throw new Error(`${getResponse.status}`);
+        }
+
+        //parse json and produce javascript object
+        //store in data variable
+        const data = await getResponse.json();
+
+        console.log("User Data Retrieved");
+
+        //store income data in incomeData state variable
+        setIncomeData(data.data.Income);
+      } catch (error) {
+        //catch block for handling errors
+        console.error(error);
+      }
+    }
+    //call the getData() function when component mounts
+    getData();
+  }, [deleteChange, postChange]);
+
 
   return (
     <>
@@ -41,8 +92,8 @@ function RenderIncome({ incomeData }) {
       </div>
       
       <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
-        <div className="mt-28">
-          {/* use map() to dynamically render incomeData */}
+        <div className="">
+          {/* use map() to dynamically render updatedData */}
           <ul>
             {incomeData.map((income, key) => (
               <div
