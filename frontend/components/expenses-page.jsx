@@ -1,12 +1,12 @@
-import React from "react";
+import { React} from "react";
 
 // Import expense-tracker components
 import SavingsForm from "./SavingsComponent/SavingsForm";
 import IncomeForm from "./IncomeComponent/IncomeForm";
 import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
-function ExpenseGoals() {
 
+function ExpenseGoals() {
   return (
     <>
       <div className="flex flex-col justify-items-center">

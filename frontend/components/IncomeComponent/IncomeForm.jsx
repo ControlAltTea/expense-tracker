@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useState } from "react";
 import RenderIncome from "./RenderIncome";
 
 //component responsible for rendering form, posting data, and getting data
@@ -6,7 +6,6 @@ function IncomeForm() {
 
   //grab token from browser to authenticate user by using token in post request headers
   const token = sessionStorage.getItem("jwt-token");
-
 
   //an object that holds respective income properties and is set to empty strings
   const emptyForm = {
