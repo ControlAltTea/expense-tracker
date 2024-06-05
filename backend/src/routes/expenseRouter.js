@@ -102,8 +102,7 @@ expenseRouter.post("/addIncome", async (req, res) => {
         description: expense.description,
         category: expense.category,
         frequency: expense.frequency,
-        targetDate: expense.targetDate
-
+        targetDate: expense.targetDate,
       },
     });
     return res.status(200).json({
@@ -156,9 +155,11 @@ expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
         id: expenseId,
       },
     });
-    return res
-      .status(200)
-      .json({ status: "success", message: "Income Delete", data: data.id });
+    return res.status(200).json({
+      status: "success",
+      message: "Income Delete",
+      data: deleteIncome.id,
+    });
   } catch (error) {
     return res
       .status(400)

@@ -20,7 +20,6 @@ function IncomeForm() {
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
-
   //function that handles changes in our form
   //takes in the event parameter
   //extracts the name and value properties from the event,
@@ -76,7 +75,6 @@ function IncomeForm() {
   //useEffect(()=> {},[]) so when component mounts, code inside is ran
   //get data from backend api, include token authorization
   useEffect(() => {
-
     async function getData() {
       //await for fetch to make a GET request
       let dashboardUrl = "http://localhost:3001/api/dashboard";
@@ -97,10 +95,9 @@ function IncomeForm() {
 
         //parse json and produce javascript object
         //store in data variable
-        const data = await getResponse.json();  
+        const data = await getResponse.json();
 
-      
-        console.log("Data Retrieved Successfully")
+        console.log("Data Retrieved Successfully");
 
         //store income data in incomeData state variable
         setIncomeData(data.data.Income);
