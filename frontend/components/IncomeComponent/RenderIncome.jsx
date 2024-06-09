@@ -17,7 +17,6 @@ function RenderIncome({ postChange }) {
   //send delete request to backend api
   //takes id as parameter to delete specific income, id is used at the end of backend's url
   async function deleteIncome(id) {
-    const token = sessionStorage.getItem("jwt-token");
     const deleteIncomeUrl = `http://localhost:3001/api/expense/deleteIncome/${id}`;
 
     //include token authentication in headers
@@ -38,7 +37,7 @@ function RenderIncome({ postChange }) {
 
       //store response in deleteChange state
       setDeleteChange(await deleteResponse.json());
-      console.log("User Data Deleted");
+      console.log("User Income Deleted");
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +68,7 @@ function RenderIncome({ postChange }) {
         //store in data variable
         const data = await getResponse.json();
 
-        console.log("User Data Retrieved");
+        console.log("User Income Retrieved");
 
         //store income data in incomeData state variable
         setIncomeData(data.data.Income);
@@ -98,7 +97,7 @@ function RenderIncome({ postChange }) {
             {incomeData.map((income, key) => (
               <div
                 key={key}
-                className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4"
+                className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4 relative"
               >
                 <ul>
                   <li className="flex">
@@ -137,7 +136,7 @@ function RenderIncome({ postChange }) {
                   //pass income.id through delete function to delete specific income
                   onClick={() => deleteIncome(income.id)}
                   type="button"
-                  className="h-8 w-8 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center"
+                  className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
                 >
                   X
                 </button>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 //Import context from App.jsx
 import { AuthContext } from "../src/App";
+import { NameContext } from "../src/App";
 
 function Login() {
   //Hook to redirect to a different route
@@ -15,6 +16,7 @@ function Login() {
   //Destructure setLoggedIn from context
   //Accessible from App.jsx
   const {setLoggedIn} = useContext(AuthContext);
+  const {setUserName} = useContext(NameContext);
 
   // Event handler for email input change
   function handleEmailChange(e) {
@@ -55,6 +57,7 @@ function Login() {
         //get response data
         //store token in brower's session storage
         const responseData = await response.json();
+
         const token = responseData.token;
         sessionStorage.setItem("jwt-token", token);
 
@@ -64,6 +67,8 @@ function Login() {
 
         //Set loggedIn state to true
         setLoggedIn(true);
+        //Set username's value to name
+        setUserName(responseData.user.name)
 
         // Redirect to dashboard after successful login
         navigate("/dashboard");

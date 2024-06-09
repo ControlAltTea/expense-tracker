@@ -7,7 +7,7 @@ import { AuthContext } from "../src/App";
 function Navbar() {
   //Destructure loggedIn state and setLoggedIn function from context
   //So that this is accessible from App.jsx
-  const {loggedIn, setLoggedIn} = useContext(AuthContext);
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
   //useNavigate hook to redirect to a different route
   const navigate = useNavigate();
@@ -23,28 +23,25 @@ function Navbar() {
   }
 
   return (
-
-// conditionally render links in navbar depending on loggedIn state
+    // conditionally render links in navbar depending on loggedIn state
 
     <nav className="bg-green-300 flex justify-between items-center p-5">
       <Link className="text-3xl" to="/">
         Expense Tracker
       </Link>
 
-      <ul className="flex p-0 m-0 gap-5">
-        <li>
-          {loggedIn && <Link to="/dashboard">Dashboard</Link>}
-        </li>
-        <li>
-          {!loggedIn && <Link to="/login">Log In</Link>}
-        </li>
-        <li>
-          {!loggedIn && <Link to="/signup">Sign Up</Link>}
-        </li>
+      <ul className="flex">
+        <li className="">{loggedIn && <Link to="/dashboard">Dashboard</Link>}</li>
+        <li className="ml-2 mr-2">{!loggedIn && <Link to="/login">Log In</Link>}</li>
+        <li className="ml-2 mr-2">{!loggedIn && <Link to="/signup">Sign Up</Link>}</li>
 
-        {loggedIn && <li>
-         <button onClick={handleLogout}>Log Out</button>
-        </li>}
+        {loggedIn && (
+          <li className="mr-2">
+            <button onClick={handleLogout} className="">
+              Log Out
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );
