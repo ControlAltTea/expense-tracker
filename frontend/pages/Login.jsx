@@ -1,13 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+//Import ToastContainer, this is where notification is rendered
+//Import toast to utilize notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //Import context from App.jsx
 import { AuthContext } from "../src/App";
 import { NameContext } from "../src/App";
 
+
 function Login() {
   //Hook to redirect to a different route
   const navigate = useNavigate();
+
 
   // State variable for email and password input fields
   const [email, setEmail] = useState("");
@@ -37,8 +44,18 @@ function Login() {
     const data = { email, password };
 
     //Checks if email or password is missing
+    //Use toast to display error message
     if (!email || !password) {
-      alert("Please Fill All Fields");
+      toast.error("Input fields cannot be empty.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
 
@@ -58,6 +75,8 @@ function Login() {
         //store token in brower's session storage
         const responseData = await response.json();
 
+        console.log(responseData);
+
         const token = responseData.token;
         sessionStorage.setItem("jwt-token", token);
 
@@ -72,7 +91,18 @@ function Login() {
 
         // Redirect to dashboard after successful login
         navigate("/dashboard");
+        //If unsuccesful response, use toast to alert error message
       } else {
+        toast.error("Invalid Username or Password", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         throw new Error(`${response.status}`);
       }
     } catch (error) {
@@ -136,6 +166,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
