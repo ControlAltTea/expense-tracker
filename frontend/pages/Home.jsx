@@ -1,5 +1,5 @@
-import React from "react";
-import ExpenseGoals from "../components/expenses-page";
+import ExpenseGoals from "../components/ExpensesPage";
+import ChatBar from "../components/ChatBar";
 import IncomeForm from "../components/IncomeComponent/IncomeForm";
 
 function Home() {
@@ -7,6 +7,7 @@ function Home() {
     <div>
       <div>
         <ExpenseGoals />
+        <ChatBar />
       </div>
     </div>
   );

@@ -23,10 +23,11 @@ exports.createUser = async (req, res) => {
         .status(400)
         .json({ status: "failed", message: "Email already exist" });
 
-    if (!passwordRequirement(password))
-      return res
-        .status(400)
-        .json({ status: "failed", message: "Password Critera Not Met" });
+    //Leave out until ready for production
+    // if (!passwordRequirement(password))
+    //   return res
+    //     .status(400)
+    //     .json({ status: "failed", message: "Password Critera Not Met" });
 
     try {
       const hashedPassword = await bycrpyt.hash(password, 10);

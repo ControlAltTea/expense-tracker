@@ -2,6 +2,7 @@ import { useState, React } from "react";
 import DatePicker from "react-date-picker";
 import ExpenseData from "./ExpenseData";
 import IncomeForm from "./IncomeComponent/IncomeForm";
+import ChatBar from "./ChatBar";
 
 function ExpenseGoals() {
   // New Saving Goal
@@ -86,7 +87,6 @@ function ExpenseGoals() {
   return (
     <>
       <div className="tracker-container">
-
         <div className="forms-container">
           {/* --------------------------------------------savings component---------------------------------------- */}
 
@@ -145,16 +145,16 @@ function ExpenseGoals() {
                 </div>
               </div>
 
-            <button
-              type="submit"
-              className="w-full my-4 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Create Goal
-            </button>
-          </form>
-        </div>
-       
-<IncomeForm />
+              <button
+                type="submit"
+                className="w-full my-4 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Create Goal
+              </button>
+            </form>
+          </div>
+
+          <IncomeForm />
 
           {/* --------------------------------------------expense component---------------------------------------- */}
 
@@ -285,7 +285,7 @@ function ExpenseGoals() {
           </div>
 
           <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <ExpenseData expenses={expenses}/>
+            <ExpenseData expenses={expenses} />
           </div>
         </div>
       </div>
