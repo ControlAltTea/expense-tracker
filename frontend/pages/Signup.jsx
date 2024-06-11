@@ -16,6 +16,18 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //function to check if password has an uppercase letter
+  function hasUpperCase(password) {
+    return password !== password.toLowerCase();
+  }
+
+  //declare regex that excludes uppercase and lowercase letters a-z, and any numbers
+  //function to check for special characters using .test()
+  const specialRegex = /[^A-Z a-z0-9]/;
+  function hasSpecialChr(password) {
+    return specialRegex.test(password);
+  }
+
   //functions to handle changes within input fields
   //update state values as user types
   //event as parameter
@@ -73,12 +85,9 @@ function Signup() {
 
       const signUpResponse = await response.json();
 
-      console.log(signUpResponse.message);
-
-
-      //if backend message responds with "Password Critera Not Met" alert user approriately
-      if (signUpResponse.message === "Password Critera Not Met") {
-        toast.error("Password Criteria Not Met.", {
+      //if backend message responds with "Email already exist" alert user approriately
+      if (signUpResponse.message === "Email already exist") {
+        toast.error("User With Email Already Exists.", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -91,9 +100,37 @@ function Signup() {
         return;
       }
 
-      //if backend message responds with "Email already exist" alert user approriately
-      if (signUpResponse.message === "Email already exist") {
-        toast.error("User With Email Already Exists.", {
+      //if backend message responds with "Password Critera Not Met" alert user approriately
+      if (password.length <= 3) {
+        toast.error("Password Must Be Longer Than 3 Characters.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+
+      //check for uppercase letter
+      if (hasUpperCase(password) === false) {
+        toast.error("Password Must Contain an Uppercase Letter.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+
+      //check for special character
+      if (hasSpecialChr(password) === false) {
+        toast.error("Password Must Contain a Special Character.", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -169,9 +206,9 @@ function Signup() {
                   Password
                 </label>
                 <ul className="text-sm font-light text-gray-900 mb-2">
-                  <li>Must be longer than 3 characters </li>
-                  <li>contain an uppercase letter </li>
-                  <li> contain one special character </li>
+                  <li>- Must be longer than 3 characters </li>
+                  <li>- Must contain an uppercase letter </li>
+                  <li>- Must contain a special character </li>
                 </ul>
                 <input
                   type="password"

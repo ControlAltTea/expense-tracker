@@ -7,6 +7,7 @@ import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
 //import context for name
 import { NameContext } from "../src/App";
+import DataVisualization from "./DataVisualization";
 
 function ExpenseGoals() {
   //use userName object from context to render user's name
@@ -15,6 +16,12 @@ function ExpenseGoals() {
   return (
     <>
       <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
+
+      <div className="flex flex-col justify-items-center">
+        <div className="flex m-8 ml-32 mr-32">
+          <DataVisualization />
+        </div>
+      </div>
 
       <div className="flex flex-col justify-items-center">
         <div className="flex flex-col justify-evenly m-8 lg:flex-row">

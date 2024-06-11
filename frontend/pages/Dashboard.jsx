@@ -1,5 +1,5 @@
 import { React } from "react";
-import ExpenseGoals from "../components/expenses-page";
+import ExpenseGoals from "../components/Dashboard";
 
 function Dashboard() {
 
