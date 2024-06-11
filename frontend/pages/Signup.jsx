@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+//Import ToastContainer, this is where notification is rendered
+//Import toast to utilize notifications
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Signup() {
   //method for redirecting page to login after signing up
   const navigate = useNavigate();
@@ -40,8 +45,18 @@ function Signup() {
     const data = { firstName, lastName, email, password };
 
     //conditional statement to ensure that all fields are filled out before signing up
+    //use toast to alert if input fields are left empty
     if (!firstName || !lastName || !email || !password) {
-      alert("Please Fill All Fields");
+      toast.error("Input fields cannot be empty.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
 
@@ -56,18 +71,53 @@ function Signup() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error(`${response.status}`);
+      const signUpResponse = await response.json();
+
+      console.log(signUpResponse.message);
+
+
+      //if backend message responds with "Password Critera Not Met" alert user approriately
+      if (signUpResponse.message === "Password Critera Not Met") {
+        toast.error("Password Criteria Not Met.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return;
       }
 
-      //reset input fields back to empty
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
+      //if backend message responds with "Email already exist" alert user approriately
+      if (signUpResponse.message === "Email already exist") {
+        toast.error("User With Email Already Exists.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return;
+      }
 
-      //redirect to login page so user can log in with newly created account
-      navigate("/login");
+      if (response.ok) {
+        //reset input fields back to empty
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+
+        //redirect to login page so user can log in with newly created account
+        navigate("/login");
+      } else {
+        throw new Error(`${response.status}`);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -76,68 +126,71 @@ function Signup() {
   return (
     <>
       <div className="signup-container">
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
           <div className="flex justify-center">
             <form onSubmit={handleSignUp}>
-              <div className="w-60 text-xl font-medium text-gray-900 dark:text-white my-8">
+              <div className="w-60 text-xl font-medium mb-12 mt-12 text-gray-900">
                 <h5 className="flex justify-center">Sign up for an account</h5>
               </div>
 
               <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-900">
                   First Name
                 </label>
                 <input
                   type="text"
                   value={firstName}
                   onChange={handleFirstNameChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3 dark:bg-gray-700"
                 />
 
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-900">
                   Last Name
                 </label>
                 <input
                   type="text"
                   value={lastName}
                   onChange={handleLastNameChange}
-
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3"
                 />
               </div>
 
               <div className="flex justify-center flex-col">
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-medium text-gray-900">
                   Email
                 </label>
                 <input
                   type="text"
                   value={email}
                   onChange={handleEmailChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3"
                 />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Password 
-                </label> 
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Password
+                </label>
+                <ul className="text-sm font-light text-gray-900 mb-2">
+                  <li>Must be longer than 3 characters </li>
+                  <li>contain an uppercase letter </li>
+                  <li> contain one special character </li>
+                </ul>
                 <input
                   type="password"
                   value={password}
                   onChange={handlePasswordChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
-
 
                 <div className="flex justify-center px-4 py-6">
                   <button
                     type="submit"
-                    className="w-full my-4 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="w-full my-4 text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
                     Sign Up
                   </button>
                 </div>
 
                 <div className="flex items-center flex-col py-4">
-                  <div className="text-sm font-medium text-gray-900 dark:text-white">
+                  <div className="text-sm font-medium text-gray-900">
                     Already Have an Account
                   </div>
                   <Link
@@ -152,6 +205,7 @@ function Signup() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
