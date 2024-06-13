@@ -14,6 +14,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("tiny"));
 }
 
+app.get("/dashboard", (req, res) => {
+  res.redirect("/");
+});
+
 app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

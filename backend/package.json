@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development nodemon --env-file=.env server.js ",
     "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
-    "deploy:full": "npm run build:ui",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push ",
     "start": "node server.js"
   },
   "prisma": {
