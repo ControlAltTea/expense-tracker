@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon --env-file=.env server.js ",
     "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
     "deploy:full": "npm run build:ui",
-    "start": "npm run build:ui && cross-env NODE_ENV=production node --env-file=.env server.js"
+    "start": "npm run build:ui && cross-env NODE_ENV=production node server.js"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
