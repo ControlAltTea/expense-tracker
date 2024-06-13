@@ -25,18 +25,17 @@ app.use("/api/login", loginRouter);
 app.use("/api/register", registerRouter);
 
 // add middleware auth once dashboard is finished
-if (process.env.NODE_ENV === "development") {
-  app.use(
-    "/api/dashboard",
-    passport.authenticate("jwt", { session: false }),
-    dashBoardRouter
-  );
-  app.use(
-    "/api/expense",
-    passport.authenticate("jwt", { session: false }),
-    expenseRouter
-  );
-}
+
+app.use(
+  "/api/dashboard",
+  passport.authenticate("jwt", { session: false }),
+  dashBoardRouter
+);
+app.use(
+  "/api/expense",
+  passport.authenticate("jwt", { session: false }),
+  expenseRouter
+);
 
 app.get(
   "/test",

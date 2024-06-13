@@ -102,8 +102,7 @@ expenseRouter.post("/addIncome", async (req, res) => {
         description: expense.description,
         category: expense.category,
         frequency: expense.frequency,
-        targetDate: expense.targetDate
-
+        targetDate: expense.targetDate,
       },
     });
     return res.status(200).json({
@@ -157,12 +156,12 @@ expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
       },
     });
 
-    return res
-      .status(200)
-      .json({ status: "success", message: "Income Delete", data: expenseId.id });
-
+    return res.status(200).json({
+      status: "success",
+      message: "Income Delete",
+      data: expenseId.id,
+    });
   } catch (error) {
-
     return res
       .status(400)
       .json({ status: "failed", message: "Internal Error" });
@@ -183,15 +182,17 @@ expenseRouter.post("/addSaving", async (req, res) => {
         targetDate: saving.targetDate,
       },
     });
+
+    return res.status(200).json({
+      status: "success",
+      message: "New Saving Goal Created",
+      data: savingData,
+    });
   } catch (error) {
     return res
       .status(400)
-      .json({ status: "failed", message: "Internal Error", data: savingData });
+      .json({ status: "failed", message: "Internal Error", data: error });
   }
-
-  return res
-    .status(200)
-    .json({ status: "success", message: "New Saving Goal Created" });
 });
 
 expenseRouter.put("/updateSaving/:id", async (req, res) => {
