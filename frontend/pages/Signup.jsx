@@ -17,12 +17,14 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   //function to check if password has an uppercase letter
+  //compare password to a lower cased version of password
+  //if does not equal then there is an uppercase and return true
   function hasUpperCase(password) {
     return password !== password.toLowerCase();
   }
 
   //declare regex that excludes uppercase and lowercase letters a-z, and any numbers
-  //function to check for special characters using .test()
+  //function to check for special characters using .test() to return true if pattern exists in password
   const specialRegex = /[^A-Z a-z0-9]/;
   function hasSpecialChr(password) {
     return specialRegex.test(password);

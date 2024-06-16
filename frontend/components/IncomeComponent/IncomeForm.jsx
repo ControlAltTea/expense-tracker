@@ -1,5 +1,7 @@
-import { React, useState } from "react";
+import { React, useState, useContext} from "react";
 import RenderIncome from "./RenderIncome";
+
+import { IncomeContext } from "../../src/App";
 
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
@@ -25,6 +27,8 @@ function IncomeForm() {
   //passed as prop to RenderIncome component
   const [postChange, setPostChange] = useState('');
 
+
+  const {setIncomeResponse} = useContext(IncomeContext);
 
   //function that handles changes in our form
   //takes in the event parameter
@@ -68,6 +72,7 @@ function IncomeForm() {
       }
 
       setPostChange(await postResponse.json())
+      setIncomeResponse(postResponse)
       console.log("User Data Posted");
 
       //reset the inputs by setting formData back to emptyForm
@@ -177,7 +182,6 @@ function IncomeForm() {
                   <option id="3">Weekly</option>
                   <option id="4">Bi-weekly</option>
                   <option id="5">Monthly</option>
-                  <option id="5">Yearly</option>
                 </select>
               </div>
             </div>

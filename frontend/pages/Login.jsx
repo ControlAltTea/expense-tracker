@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //Import context from App.jsx
 import { AuthContext } from "../src/App";
-import { NameContext } from "../src/App";
 
 
 function Login() {
@@ -23,7 +22,6 @@ function Login() {
   //Destructure setLoggedIn from context
   //Accessible from App.jsx
   const {setLoggedIn} = useContext(AuthContext);
-  const {setUserName} = useContext(NameContext);
 
   // Event handler for email input change
   function handleEmailChange(e) {
@@ -75,8 +73,6 @@ function Login() {
         //store token in brower's session storage
         const responseData = await response.json();
 
-        console.log(responseData);
-
         const token = responseData.token;
         sessionStorage.setItem("jwt-token", token);
 
@@ -87,7 +83,6 @@ function Login() {
         //Set loggedIn state to true
         setLoggedIn(true);
         //Set username's value to name
-        setUserName(responseData.user.name)
 
         // Redirect to dashboard after successful login
         navigate("/dashboard");
@@ -110,6 +105,9 @@ function Login() {
       console.error(error);
     }
   }
+
+
+
 
   return (
     <>

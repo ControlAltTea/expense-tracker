@@ -6,16 +6,13 @@ import IncomeForm from "./IncomeComponent/IncomeForm";
 import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
 //import context for name
-import { NameContext } from "../src/App";
-import DataVisualization from "./DataVisualization";
+import DataVisualization from "./ChartComponents/DataVisualization";
 
 function ExpenseGoals() {
-  //use userName object from context to render user's name
-  const { userName } = useContext(NameContext);
+
 
   return (
     <>
-      <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
 
       <div className="flex flex-col justify-items-center">
         <div className="flex m-8 ml-32 mr-32">

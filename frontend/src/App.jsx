@@ -6,31 +6,46 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
 import { Route, Routes } from "react-router-dom";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 //Create context
 export const AuthContext = createContext();
-export const NameContext = createContext();
+export const IncomeContext = createContext();
+export const ExpenseContext = createContext();
 
 function App() {
+  //Declare state that will be accessible from other components
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [incomeResponse, setIncomeResponse] = useState();
+  const [expenseResponse, setExpenseResponse] = useState();
 
-//Declare state that will be accessible from other components
-const [loggedIn, setLoggedIn] = useState(false);
-const [userName, setUserName] = useState('')
+  const token = sessionStorage.getItem("jwt-token");
 
-//Wrap App with provider and set values to state declared earlier
+  useEffect(() => {
+    if (token) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, [loggedIn, incomeResponse, expenseResponse]);
+
+  //Wrap App with provider and set values to state declared earlier
   return (
-    <AuthContext.Provider value={{loggedIn, setLoggedIn}}>
-      <NameContext.Provider value={{userName, setUserName}}>
-      <Navbar />
+    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+      <IncomeContext.Provider value={{ incomeResponse, setIncomeResponse }}>
+        <ExpenseContext.Provider
+          value={{ expenseResponse, setExpenseResponse }}
+        >
+          <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-      </NameContext.Provider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </ExpenseContext.Provider>
+      </IncomeContext.Provider>
     </AuthContext.Provider>
   );
 }
