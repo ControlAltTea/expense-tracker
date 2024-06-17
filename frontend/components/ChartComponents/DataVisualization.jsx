@@ -233,7 +233,7 @@ function DataVisualization() {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="w-5/6 h-fit text-center p-6 bg-white border border-gray-200  mt-12 rounded-lg shadow text-xl font-medium text-gray-900">
+        <div className="w-5/6 h-fit text-center p-6 bg-green-100 border border-gray-200  mt-12 rounded-lg shadow text-xl font-medium text-gray-900">
           Projected Monthly Expenses
         </div>
         <div className="bg-white border w-5/6 border-gray-200 rounded-lg shadow mb-12">
@@ -243,7 +243,7 @@ function DataVisualization() {
           </div>
         </div>
 
-        <div className="w-5/6 h-fit text-center p-6 bg-white border border-gray-200 rounded-lg shadow text-xl font-medium text-gray-900">
+        <div className="w-5/6 h-fit text-center p-6 bg-green-100  border border-gray-200 rounded-lg shadow text-xl font-medium text-gray-900">
           Projected Monthly Net Income
         </div>
         <div className="h-fit w-5/6 bg-white border border-gray-200 rounded-lg shadow mb-12 pt-12">
