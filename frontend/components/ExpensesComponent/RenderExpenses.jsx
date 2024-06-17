@@ -10,7 +10,7 @@ const [deleteChange, setDeleteChange] = useState('')
 
 async function deleteExpense(id) {
   const token = sessionStorage.getItem("jwt-token");
-  const deleteExpenseUrl = `http://localhost:3001/api/expense/deleteExpense/${id}`;
+  const deleteExpenseUrl = `/api/expense/deleteExpense/${id}`;
 
   //include token authentication in headers
   //await for fetch to make a DELETE request
@@ -39,7 +39,7 @@ async function deleteExpense(id) {
 useEffect(() => {
   async function getData() {
     //await for fetch to make a GET request
-    let dashboardUrl = "http://localhost:3001/api/dashboard";
+    let dashboardUrl = "/api/dashboard";
 
     try {
       const getResponse = await fetch(dashboardUrl, {
