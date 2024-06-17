@@ -5,7 +5,6 @@ import { IncomeContext } from "../../src/App";
 
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
-
   //grab token from browser to authenticate user by using token in post request headers
   const token = sessionStorage.getItem("jwt-token");
 
@@ -17,7 +16,6 @@ function IncomeForm() {
     frequency: "",
     targetDate: "",
   };
-
 
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
@@ -51,7 +49,7 @@ function IncomeForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
+    let addIncomeUrl = "/api/expense/addIncome";
 
     try {
       //await for fetch to make a POST request
@@ -83,16 +81,12 @@ function IncomeForm() {
     }
   }
 
-
-
   return (
     <>
       <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-xl font-medium text-gray-900">
-              Add Income
-            </h5>
+            <h5 className="text-xl font-medium text-gray-900">Add Income</h5>
 
             <div className="mb-5">
               <label

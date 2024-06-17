@@ -1,9 +1,14 @@
-import React from 'react'
+import ExpenseGoals from "../components/ExpensesPage";
+import IncomeForm from "../components/IncomeComponent/IncomeForm";
 
 function Home() {
   return (
-    <div>Home</div>
-  )
+    <div>
+      <div>
+        <ExpenseGoals />
+      </div>
+    </div>
+  );
 }
 
-export default Home
+export default Home;

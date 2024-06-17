@@ -39,6 +39,7 @@ export default function RenderExpenses({ postChange }) {
     }
   }
 
+
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request

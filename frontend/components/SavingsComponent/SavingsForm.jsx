@@ -28,7 +28,7 @@ export default function SavingsForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addSavingsUrl = "http://localhost:3001/api/expense/addSaving";
+    let addSavingsUrl = "/api/expense/addSaving";
 
     try {
       const postResponse = await fetch(addSavingsUrl, {
