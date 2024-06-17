@@ -16,7 +16,7 @@ function RenderIncome({ postChange }) {
   //send delete request to backend api
   //takes id as parameter to delete specific income, id is used at the end of backend's url
   async function deleteIncome(id) {
-    const deleteIncomeUrl = `http://localhost:3001/api/expense/deleteIncome/${id}`;
+    const deleteIncomeUrl = `/api/expense/deleteIncome/${id}`;
 
     //include token authentication in headers
     //await for fetch to make a DELETE request
@@ -47,7 +47,7 @@ function RenderIncome({ postChange }) {
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {

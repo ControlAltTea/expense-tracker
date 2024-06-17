@@ -44,7 +44,7 @@ function IncomeForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
+    let addIncomeUrl = "/api/expense/addIncome";
 
     try {
       //await for fetch to make a POST request

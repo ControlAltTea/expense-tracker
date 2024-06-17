@@ -7,7 +7,7 @@ export default function RenderSavings({ postChange }) {
   const [deleteChange, setDeleteChange] = useState("");
 
   async function deleteSavings(id) {
-    const deleteSavingsUrl = `http://localhost:3001/api/expense/deleteSaving/${id}`;
+    const deleteSavingsUrl = `/api/expense/deleteSaving/${id}`;
 
     try {
       const deleteResponse = await fetch(deleteSavingsUrl, {
@@ -31,7 +31,7 @@ export default function RenderSavings({ postChange }) {
 
   useEffect(() => {
     async function getData() {
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {
