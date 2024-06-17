@@ -1,4 +1,5 @@
 import { React } from "react";
+import ChatBar from "../components/ChatBar";
 import ExpenseGoals from "../components/ExpensesPage";
 
 function Dashboard() {
@@ -6,6 +7,7 @@ function Dashboard() {
     <div>
       <div>
         <ExpenseGoals />
+        <ChatBar />
       </div>
     </div>
   );
