@@ -1,6 +1,7 @@
 import { React, useEffect, useState, useContext } from "react";
 import IncomePieChart from "./IncomePieChart";
 import ExpensesPieChart from "./ExpensesPieChart";
+import BarChart from "./BarChart";
 
 //import context created from app.jsx
 import { IncomeContext } from "../../src/App";
@@ -11,7 +12,7 @@ import { ExpenseContext } from "../../src/App";
 //multiply weekly by 4.345
 //mulitply bi-weekly by 2.172
 
-//data needs to be formatted like this
+//pie chart data needs to be formatted like this
 //    const data = [
 //      ["Income", "Dollar Amount"],
 //      ["Income From Work", 2500],
@@ -20,9 +21,13 @@ import { ExpenseContext } from "../../src/App";
 //      ["Stock Dividends", 250],
 //    ];
 
-//example:
-//daily income $5
-//monthly = 152.18
+// bar chart data needs to be formatted like this
+//    const data = [
+//      ["Net Income", "Income", "Expenses"],
+//      ["", 3000, 2400],
+//    ];
+
+
 
 function DataVisualization() {
   //states to store income and expense data
@@ -30,16 +35,21 @@ function DataVisualization() {
   const [incomeData, setIncomeData] = useState([]);
   const [expenseData, setExpenseData] = useState([]);
 
+  //state to store data for bar chart
+  const [barData, setBarData] = useState([]);
+
+  //state to store netIncome
+  const [netIncome, setNetIncome] = useState();
+
   //grab token from browser and store in variable
   //used to authenticate GET request
   const token = sessionStorage.getItem("jwt-token");
 
   //grab income and expense states from context
-
   const { incomeResponse } = useContext(IncomeContext);
   const { expenseResponse } = useContext(ExpenseContext);
 
-  //useEffect to dynamically render pie charts when incomeResponse or expenseResponse is changed/updated
+  //useEffect to dynamically render charts when incomeResponse or expenseResponse is changed/updated
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
@@ -71,6 +81,10 @@ function DataVisualization() {
         const formattedIncome = [["Income", "Dollar Amount"]];
         const formattedExpense = [["Income", "Dollar Amount"]];
 
+        //variables to store income and expense amounts
+        const incomeAmount = [];
+        const expenseAmount = [];
+
         //loop through user's income and expense data
         for (let i = 0; i < income.length; i++) {
           //store current income in a variable in order to access properties
@@ -79,15 +93,21 @@ function DataVisualization() {
           //if statements to check the frequency of that current income
           //depending on frequency multiply by average amount of days, weeks, etc. to get monthly average
           //create new variable containing only the description and amount properties
+          //create another variable only containing amount, this will be used to calculate net income
           //use toFixed() to make sure that amount is only two decimal places and parseFloat to convert back to a number
-          //then push to variable we created earlier containing the correct formatted titles
+          //then push to variables we created earlier 
+
+          //-----------------------------for loop: loop through income-----------------------------------//
           if (currentIncome.frequency == "Daily") {
             let newIncome = [
               currentIncome.description,
               parseFloat((currentIncome.amount * 30.436).toFixed(2)),
             ];
 
+            let newAmount = currentIncome.amount * 30.436;
+
             formattedIncome.push(newIncome);
+            incomeAmount.push(parseFloat(newAmount));
           }
 
           if (currentIncome.frequency == "Weekly") {
@@ -96,7 +116,9 @@ function DataVisualization() {
               parseFloat((currentIncome.amount * 4.345).toFixed(2)),
             ];
 
+            let newAmount = currentIncome.amount * 4.345;
             formattedIncome.push(newIncome);
+            incomeAmount.push(parseFloat(newAmount));
           }
 
           if (currentIncome.frequency == "Bi-weekly") {
@@ -105,7 +127,10 @@ function DataVisualization() {
               parseFloat((currentIncome.amount * 2.172).toFixed(2)),
             ];
 
+            let newAmount = currentIncome.amount * 2.172;
+
             formattedIncome.push(newIncome);
+            incomeAmount.push(parseFloat(newAmount));
           }
 
           if (currentIncome.frequency == "Monthly") {
@@ -114,10 +139,14 @@ function DataVisualization() {
               parseFloat(currentIncome.amount.toFixed(2)),
             ];
 
+            let newAmount = currentIncome.amount;
+
             formattedIncome.push(newIncome);
+            incomeAmount.push(parseFloat(newAmount));
           }
         }
 
+        //----------------------------- expense for loop: loop through expenses-----------------------------------//
         for (let i = 0; i < expense.length; i++) {
           let currentExpense = expense[i];
 
@@ -126,7 +155,11 @@ function DataVisualization() {
               currentExpense.description,
               parseFloat((currentExpense.amount * 30.436).toFixed(2)),
             ];
+
+            let newAmount = currentExpense.amount * 30.436;
+
             formattedExpense.push(newExpense);
+            expenseAmount.push(parseFloat(newAmount));
           }
 
           if (currentExpense.frequency == "Weekly") {
@@ -134,8 +167,10 @@ function DataVisualization() {
               currentExpense.description,
               parseFloat((currentExpense.amount * 4.345).toFixed(2)),
             ];
+            let newAmount = currentExpense.amount * 4.345;
 
             formattedExpense.push(newExpense);
+            expenseAmount.push(parseFloat(newAmount));
           }
 
           if (currentExpense.frequency == "Bi-weekly") {
@@ -143,8 +178,10 @@ function DataVisualization() {
               currentExpense.description,
               parseFloat((currentExpense.amount * 2.172).toFixed(2)),
             ];
+            let newAmount = currentExpense.amount * 2.172;
 
             formattedExpense.push(newExpense);
+            expenseAmount.push(parseFloat(newAmount));
           }
 
           if (currentExpense.frequency == "Monthly") {
@@ -152,33 +189,63 @@ function DataVisualization() {
               currentExpense.description,
               parseFloat(currentExpense.amount.toFixed(2)),
             ];
+            let newAmount = currentExpense.amount;
 
             formattedExpense.push(newExpense);
+            expenseAmount.push(parseFloat(newAmount));
           }
         }
 
-        //lastly update the incomeData and expenseData state so that we can pass it to child components in order to implement it with 
-        //react-google-charts 
+        //variables to store the sum of income and expense
+        //.reduce() to calculate the sum
+        const totalIncome = incomeAmount.reduce((acc, curr) => acc + curr, 0);
+        const totalExpense = expenseAmount.reduce((acc, curr) => acc + curr, 0);
+
+        //variable with correct format so that react-google-charts can utilize it
+        //contains totalIncome and totalExpense
+        //toFixed to represent number in fixed notation, parseFloat to convert back to number
+        const incomeAndExpense = [
+          ["Net Income", "Income", "Expenses"],
+          ["", parseFloat(totalIncome.toFixed(2)), parseFloat(totalExpense.toFixed(2))],
+        ];
+
+        //variable which stores and calculates net income
+        const netIncome = '$' + (totalIncome - totalExpense).toFixed(2);
+
+        //lastly update the incomeData, expenseData, barData, and netIncome state so that we can pass it to child components in order to implement it with
+        //react-google-charts
         setIncomeData(formattedIncome);
         setExpenseData(formattedExpense);
+
+        setBarData(incomeAndExpense);
+        setNetIncome(netIncome);
       } catch (error) {
         //catch block for handling errors
         console.error(error);
       }
     }
-    //call the getData() function when component mounts
+    //call the getData() function when incomeResponse and expenseResponse updates/changes
     getData();
   }, [incomeResponse, expenseResponse]);
 
   return (
     <>
-      <div className="h-fit w-full bg-white border border-gray-200 rounded-lg shadow pb-8">
-        <div className="text-2xl font-medium text-gray-900 text-center m-8">
-          Projected Monthly Finances
+      <div className="h-fit w-full flex-col">
+        <div className=" bg-white border border-gray-200 rounded-lg shadow pb-8">
+          <div className="text-2xl font-medium text-gray-900 text-center m-8">
+            Projected Monthly Finances
+          </div>
+          <div className="flex justify-evenly items-center ">
+            <IncomePieChart incomeData={incomeData} />
+            <ExpensesPieChart expenseData={expenseData} />
+          </div>
         </div>
-        <div className="flex justify-evenly items-center ">
-          <IncomePieChart incomeData={incomeData} />
-          <ExpensesPieChart expenseData={expenseData} />
+
+        <div className="h-fit w-full bg-white border border-gray-200 rounded-lg shadow mt-14 pb-8">
+          <div className="text-2xl font-medium text-gray-900 text-center m-8">
+            Projected Monthly Net Income
+          </div>
+          <BarChart barData={barData} netIncome={netIncome}/>
         </div>
       </div>
     </>
