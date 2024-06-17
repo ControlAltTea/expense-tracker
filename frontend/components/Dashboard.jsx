@@ -14,14 +14,12 @@ function ExpenseGoals() {
   return (
     <>
 
-      <div className="flex flex-col justify-items-center">
-        <div className="flex m-8 ml-32 mr-32">
+      <div className="flex-col">
           <DataVisualization />
-        </div>
       </div>
 
-      <div className="flex flex-col justify-items-center">
-        <div className="flex flex-col justify-evenly m-8 lg:flex-row">
+      <div className="flex flex-col justify-items-center ">
+        <div className="flex flex-col justify-evenly lg:flex-row">
           <SavingsForm />
 
           <IncomeForm />

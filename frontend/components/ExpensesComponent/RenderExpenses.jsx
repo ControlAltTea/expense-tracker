@@ -72,8 +72,8 @@ export default function RenderExpenses({ postChange }) {
 
   return (
     <>
-      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 ">
+        <h5 className="text-xl font-medium text-gray-900">
           Expenses
         </h5>
       </div>

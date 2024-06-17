@@ -2,14 +2,14 @@ import { React } from "react";
 //import Chart from react-google-charts
 import { Chart } from "react-google-charts";
 
-//expenseData is passed from parent component 
+//expenseData is passed from parent component
 function ExpensesPieChart({ expenseData }) {
-
   //declare options for customizability of pie chart
   const options = {
+    title: 'Expenses',
     is3D: true,
-    width: 400,
-    height: 400,
+    width: 450,
+    height: 450,
     legend: "none",
   };
 
@@ -18,16 +18,13 @@ function ExpensesPieChart({ expenseData }) {
   //??not sure why, but it works like this
   return (
     <div className="flex-column">
-      <div className="text-xl font-medium text-gray-900 text-center">
-        Expenses
-      </div>
 
       {expenseData.length < 2 && (
         <div>Add Expenses To Visualize Your Finances.</div>
       )}
 
       {expenseData.length > 1 && (
-        <Chart chartType="PieChart" data={expenseData} options={options} />
+          <Chart chartType="PieChart" data={expenseData} options={options} />
       )}
     </div>
   );

@@ -7,6 +7,7 @@ export const options = {
     title: "Amount in $",
     minValue: 0,
   },
+  colors: ['#109618','#dc3912']
 };
 
 //pass barData and netIncome to render in child component
@@ -20,8 +21,10 @@ function BarChart({ barData, netIncome }) {
         data={barData}
         options={options}
       />
-      <div className="text-xl font-medium text-gray-900 text-center p-8">
-        Net Income: {netIncome}
+      <div className="flex justify-center">
+        <div className="text-l w-3/12 rounded-lg bg-green-400 font-medium text-center text-white p-3 m-12">
+          Net Income: {netIncome}
+        </div>
       </div>
     </>
   );

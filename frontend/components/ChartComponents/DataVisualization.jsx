@@ -27,8 +27,6 @@ import { ExpenseContext } from "../../src/App";
 //      ["", 3000, 2400],
 //    ];
 
-
-
 function DataVisualization() {
   //states to store income and expense data
   //initialize as empty array
@@ -95,7 +93,7 @@ function DataVisualization() {
           //create new variable containing only the description and amount properties
           //create another variable only containing amount, this will be used to calculate net income
           //use toFixed() to make sure that amount is only two decimal places and parseFloat to convert back to a number
-          //then push to variables we created earlier 
+          //then push to variables we created earlier
 
           //-----------------------------for loop: loop through income-----------------------------------//
           if (currentIncome.frequency == "Daily") {
@@ -206,11 +204,15 @@ function DataVisualization() {
         //toFixed to represent number in fixed notation, parseFloat to convert back to number
         const incomeAndExpense = [
           ["Net Income", "Income", "Expenses"],
-          ["", parseFloat(totalIncome.toFixed(2)), parseFloat(totalExpense.toFixed(2))],
+          [
+            "",
+            parseFloat(totalIncome.toFixed(2)),
+            parseFloat(totalExpense.toFixed(2)),
+          ],
         ];
 
         //variable which stores and calculates net income
-        const netIncome = '$' + (totalIncome - totalExpense).toFixed(2);
+        const netIncome = "$" + (totalIncome - totalExpense).toFixed(2);
 
         //lastly update the incomeData, expenseData, barData, and netIncome state so that we can pass it to child components in order to implement it with
         //react-google-charts
@@ -230,22 +232,22 @@ function DataVisualization() {
 
   return (
     <>
-      <div className="h-fit w-full flex-col">
-        <div className=" bg-white border border-gray-200 rounded-lg shadow pb-8">
-          <div className="text-2xl font-medium text-gray-900 text-center m-8">
-            Projected Monthly Finances
-          </div>
-          <div className="flex justify-evenly items-center ">
+      <div className="flex flex-col items-center">
+        <div className="w-5/6 h-fit text-center p-6 bg-white border border-gray-200  mt-12 rounded-lg shadow text-xl font-medium text-gray-900">
+          Projected Monthly Expenses
+        </div>
+        <div className="bg-white border w-5/6 border-gray-200 rounded-lg shadow mb-12">
+          <div className="flex justify-evenly items-center">
             <IncomePieChart incomeData={incomeData} />
             <ExpensesPieChart expenseData={expenseData} />
           </div>
         </div>
 
-        <div className="h-fit w-full bg-white border border-gray-200 rounded-lg shadow mt-14 pb-8">
-          <div className="text-2xl font-medium text-gray-900 text-center m-8">
-            Projected Monthly Net Income
-          </div>
-          <BarChart barData={barData} netIncome={netIncome}/>
+        <div className="w-5/6 h-fit text-center p-6 bg-white border border-gray-200 rounded-lg shadow text-xl font-medium text-gray-900">
+          Projected Monthly Net Income
+        </div>
+        <div className="h-fit w-5/6 bg-white border border-gray-200 rounded-lg shadow mb-12 pt-12">
+          <BarChart barData={barData} netIncome={netIncome} />
         </div>
       </div>
     </>
