@@ -3,7 +3,6 @@ import RenderIncome from "./RenderIncome";
 
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
-
   //grab token from browser to authenticate user by using token in post request headers
   const token = sessionStorage.getItem("jwt-token");
 
@@ -16,19 +15,14 @@ function IncomeForm() {
     targetDate: "",
   };
 
-
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
-<<<<<<< HEAD
-=======
   //state to detect when post request is made, state used in useEffect to trigger get request to render data
   //backend's post response is stored here
   //passed as prop to RenderIncome component
-  const [postChange, setPostChange] = useState('');
+  const [postChange, setPostChange] = useState("");
 
-
->>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe
   //function that handles changes in our form
   //takes in the event parameter
   //extracts the name and value properties from the event,
@@ -70,7 +64,7 @@ function IncomeForm() {
         throw new Error(`${postResponse.status}`);
       }
 
-      setPostChange(await postResponse.json())
+      setPostChange(await postResponse.json());
       console.log("User Data Posted");
 
       //reset the inputs by setting formData back to emptyForm
@@ -81,56 +75,12 @@ function IncomeForm() {
     }
   }
 
-<<<<<<< HEAD
-  //useEffect(()=> {},[]) so when component mounts, code inside is ran
-  //get data from backend api, include token authorization
-  useEffect(() => {
-    async function getData() {
-      //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
-
-      try {
-        const getResponse = await fetch(dashboardUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json", // Set request content type to JSON
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        //if response is not succesful then throw error status
-        if (!getResponse.ok) {
-          throw new Error(`${getResponse.status}`);
-        }
-
-        //parse json and produce javascript object
-        //store in data variable
-        const data = await getResponse.json();
-
-        console.log("Data Retrieved Successfully");
-
-        //store income data in incomeData state variable
-        setIncomeData(data.data.Income);
-      } catch (error) {
-        //catch block for handling errors
-        console.error(error);
-      }
-    }
-    //call the getData() function when component mounts
-    getData();
-  }, []);
-=======
-
->>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe
-
   return (
     <>
       <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-xl font-medium text-gray-900">
-              Add Income
-            </h5>
+            <h5 className="text-xl font-medium text-gray-900">Add Income</h5>
 
             <div className="mb-5">
               <label

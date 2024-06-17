@@ -10,8 +10,7 @@ function RenderIncome({ postChange }) {
 
   //state to detect when delete request is made, state used in useEffect to trigger get request to render data
   //backend's delete response is stored here
-  const [deleteChange, setDeleteChange] = useState('');
-
+  const [deleteChange, setDeleteChange] = useState("");
 
   //function to delete income
   //send delete request to backend api
@@ -35,15 +34,9 @@ function RenderIncome({ postChange }) {
         throw new Error(`${deleteResponse.status}`);
       }
 
-<<<<<<< HEAD
-      console.log(await deleteResponse.json()); 
-      console.log("Data Deleted Successfully")
-
-=======
       //store response in deleteChange state
       setDeleteChange(await deleteResponse.json());
       console.log("User Income Deleted");
->>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe
     } catch (error) {
       console.error(error);
     }
@@ -87,7 +80,6 @@ function RenderIncome({ postChange }) {
     getData();
   }, [deleteChange, postChange]);
 
-
   return (
     <>
       <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -95,7 +87,7 @@ function RenderIncome({ postChange }) {
           Income
         </h5>
       </div>
-      
+
       <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
         <div className="">
           {/* use map() to dynamically render updatedData */}
