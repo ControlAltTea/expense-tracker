@@ -20,6 +20,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("tiny"));
 }
 
+app.get("/dashboard", (req, res) => {
+  res.redirect("/");
+});
+
 app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -56,18 +60,17 @@ app.post("/api/openAi", async (req, res) => {
 });
 
 // add middleware auth once dashboard is finished
-if (process.env.NODE_ENV === "development") {
-  app.use(
-    "/api/dashboard",
-    passport.authenticate("jwt", { session: false }),
-    dashBoardRouter
-  );
-  app.use(
-    "/api/expense",
-    passport.authenticate("jwt", { session: false }),
-    expenseRouter
-  );
-}
+
+app.use(
+  "/api/dashboard",
+  passport.authenticate("jwt", { session: false }),
+  dashBoardRouter
+);
+app.use(
+  "/api/expense",
+  passport.authenticate("jwt", { session: false }),
+  expenseRouter
+);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

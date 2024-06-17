@@ -1,3 +1,4 @@
+<<<<<<< HEAD:frontend/components/ExpensesPage.jsx
 import { useState, React } from "react";
 import DatePicker from "react-date-picker";
 import ExpenseData from "./ExpenseData";
@@ -42,50 +43,25 @@ function ExpenseGoals() {
       date: date,
     };
     console.log(newGoal);
+=======
+import { React, useState, useEffect, useContext } from "react";
+>>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe:frontend/components/expenses-page.jsx
 
-    setGoals([...goals, newGoal]);
-    setDescription("");
-    setAmount("");
-    setDate(getDate(new Date()));
-  };
+// Import expense-tracker components
+import SavingsForm from "./SavingsComponent/SavingsForm";
+import IncomeForm from "./IncomeComponent/IncomeForm";
+import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
-  //Enter Expenses
-  const [expenseDescription, setExpenseDescription] = useState(""); // define empty string for initial expense description
-  const [expenses, setExpenses] = useState([]); // define empty array for expenses
-  const [expenseAmount, setExpenseAmount] = useState(0); // initialize current expense to 0
-  const [expenseDate, setExpenseDate] = useState(new Date()); // initialize expenseDate using new Date object
+//import context for name
+import { NameContext } from "../src/App";
 
-  const handleAddExpense = (e) => {
-    e.preventDefault(); // don't trigger refresh on submit
-
-    // create new expense object to append to expenses array
-    const newExpense = {
-      description: expenseDescription,
-      amount: expenseAmount,
-      date: expenseDate.toDateString(),
-      category: category,
-    };
-    console.log(newExpense);
-
-    // append new expense to current expenses array
-    setExpenses((prevExpenses) => {
-      return [...prevExpenses, newExpense];
-    });
-
-    // reset states
-    setExpenseDescription("");
-    setExpenseAmount(0);
-    setExpenseDate(new Date());
-    setCategory("");
-  };
-
-  console.log(expenseDescription);
-  console.log(expenseAmount);
-  console.log(expenseDate);
-  console.log(expenses);
+function ExpenseGoals() {
+  //use userName object from context to render user's name
+  const { userName } = useContext(NameContext);
 
   return (
     <>
+<<<<<<< HEAD:frontend/components/ExpensesPage.jsx
       <div className="tracker-container">
         <div className="forms-container">
           {/* --------------------------------------------savings component---------------------------------------- */}
@@ -266,27 +242,23 @@ function ExpenseGoals() {
             </form>
           </div>
         </div>
+=======
+      <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
+>>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe:frontend/components/expenses-page.jsx
 
-        <div className="data-container">
-          <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div className="savings">
-              <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-                Savings
-              </h5>
-            </div>
-          </div>
+      <div className="flex flex-col justify-items-center">
+        <div className="flex flex-col justify-evenly m-8 lg:flex-row">
+          <SavingsForm />
 
-          <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div className="income flex">
-              <h5 className="text-xl mr-2 font-medium text-gray-900 dark:text-white">
-                Income
-              </h5>
-            </div>
-          </div>
+          <IncomeForm />
 
+<<<<<<< HEAD:frontend/components/ExpensesPage.jsx
           <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <ExpenseData expenses={expenses} />
           </div>
+=======
+          <ExpensesForm />
+>>>>>>> 23fea0f02d470ca547d2d4f281bff84d11aa01fe:frontend/components/expenses-page.jsx
         </div>
       </div>
     </>
