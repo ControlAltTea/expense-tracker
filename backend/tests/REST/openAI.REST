@@ -1,0 +1,7 @@
+###
+POST http://localhost:3001/api/openAi HTTP/1.1
+Content-Type: application/json
+
+{
+	  "question": "How do I save on this?"
+}

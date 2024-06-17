@@ -40,7 +40,7 @@ function Login() {
     e.preventDefault(); // Prevent default form submission behavior
 
     //Backend URLfor login
-    const loginUrl = "http://localhost:3001/api/login";
+    const loginUrl = "/api/login";
     const data = { email, password };
 
     //Checks if email or password is missing

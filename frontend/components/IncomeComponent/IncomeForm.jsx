@@ -3,7 +3,6 @@ import RenderIncome from "./RenderIncome";
 
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
-
   //grab token from browser to authenticate user by using token in post request headers
   const token = sessionStorage.getItem("jwt-token");
 
@@ -16,15 +15,13 @@ function IncomeForm() {
     targetDate: "",
   };
 
-
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
   //state to detect when post request is made, state used in useEffect to trigger get request to render data
   //backend's post response is stored here
   //passed as prop to RenderIncome component
-  const [postChange, setPostChange] = useState('');
-
+  const [postChange, setPostChange] = useState("");
 
   //function that handles changes in our form
   //takes in the event parameter
@@ -47,7 +44,7 @@ function IncomeForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
+    let addIncomeUrl = "/api/expense/addIncome";
 
     try {
       //await for fetch to make a POST request
@@ -67,7 +64,7 @@ function IncomeForm() {
         throw new Error(`${postResponse.status}`);
       }
 
-      setPostChange(await postResponse.json())
+      setPostChange(await postResponse.json());
       console.log("User Data Posted");
 
       //reset the inputs by setting formData back to emptyForm
@@ -78,16 +75,12 @@ function IncomeForm() {
     }
   }
 
-
-
   return (
     <>
       <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-xl font-medium text-gray-900">
-              Add Income
-            </h5>
+            <h5 className="text-xl font-medium text-gray-900">Add Income</h5>
 
             <div className="mb-5">
               <label

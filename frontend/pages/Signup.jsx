@@ -40,7 +40,7 @@ function Signup() {
     e.preventDefault();
 
     //store backend register url in variable
-    const loginUrl = "http://localhost:3001/api/register";
+    const loginUrl = "/api/register";
     //store data as an object in order to post data to database
     const data = { firstName, lastName, email, password };
 
