@@ -1,74 +1,72 @@
-import {useState, React} from "react";
+import { useState, React, useContext } from "react";
 import RenderExpenses from "./RenderExpenses";
 
+import { ExpenseContext } from "../../src/App";
+
+//same logic as income components
+
 export default function ExpensesForm() {
+  const token = sessionStorage.getItem("jwt-token");
 
-const token = sessionStorage.getItem("jwt-token");
+  const emptyForm = {
+    amount: "",
+    category: "",
+    description: "",
+    frequency: "",
+    targetDate: "",
+  };
 
-const emptyForm = {
-  amount: "",
-  category: "",
-  description: "",
-  frequency: "",
-  targetDate: "",
-};
+  const [formData, setFormData] = useState(emptyForm);
 
-const [formData, setFormData] = useState(emptyForm);
+  const [postChange, setPostChange] = useState("");
 
-const [postChange, setPostChange] = useState('');
+  const { setExpenseResponse } = useContext(ExpenseContext);
 
-function handleChange(e) {
-  const { name, value } = e.target;
-  setFormData(function (prevState) {
-    return {
-      ...prevState,
-      [name]: value,
-    };
-  });
-}
-
-
-
-async function handleSubmit(e) {
-  e.preventDefault();
-
-  let addExpenseUrl = "/api/expense/addExpense";
-
-  try {
-    const postResponse = await fetch(addExpenseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(formData),
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData(function (prevState) {
+      return {
+        ...prevState,
+        [name]: value,
+      };
     });
-
-
-    if (!postResponse.ok) {
-      throw new Error(`${postResponse.status}`);
-    }
-
-    setPostChange(await postResponse.json())
-    console.log("User Expense Posted");
-
-
-    setFormData(emptyForm);
-  } catch (error) {
-    console.error(error);
   }
-}
 
+  async function handleSubmit(e) {
+    e.preventDefault();
 
+    let addExpenseUrl = "http://localhost:3001/api/expense/addExpense";
+
+    try {
+      const postResponse = await fetch(addExpenseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!postResponse.ok) {
+        throw new Error(`${postResponse.status}`);
+      }
+
+      setPostChange(await postResponse.json());
+      setExpenseResponse(postResponse);
+      console.log("User Expense Posted");
+
+      setFormData(emptyForm);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div>
       <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-xl font-medium text-gray-900">
-              Enter Expense
-            </h5>
+            <h5 className="text-xl font-medium text-gray-900">Enter Expense</h5>
 
             <div className="mb-5">
               <label
@@ -156,7 +154,7 @@ async function handleSubmit(e) {
                   required
                 >
                   <option id="0"> </option>
-                  <option id="1">Single Expense</option>
+                  <option id="1">No Recurrence</option>
                   <option id="2">Daily</option>
                   <option id="3">Weekly</option>
                   <option id="4">Bi-weekly</option>

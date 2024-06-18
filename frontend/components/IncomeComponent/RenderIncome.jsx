@@ -1,4 +1,7 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useContext} from "react";
+
+//import IncomeContext from App.jsx
+import { IncomeContext } from "../../src/App";
 
 //pass incomeData from parent component to render dynamically here
 function RenderIncome({ postChange }) {
@@ -10,7 +13,13 @@ function RenderIncome({ postChange }) {
 
   //state to detect when delete request is made, state used in useEffect to trigger get request to render data
   //backend's delete response is stored here
-  const [deleteChange, setDeleteChange] = useState("");
+  const [deleteChange, setDeleteChange] = useState('');
+
+  //grab setIncomeResponse from context we created at App.jsx
+  //can be used globally 
+  //used in data visualization with useEffect to dynamically render charts when this state is changed/updated
+  const {setIncomeResponse} = useContext(IncomeContext);
+
 
   //function to delete income
   //send delete request to backend api
@@ -36,6 +45,8 @@ function RenderIncome({ postChange }) {
 
       //store response in deleteChange state
       setDeleteChange(await deleteResponse.json());
+      //update incomeResponse state
+      setIncomeResponse(deleteResponse);
       console.log("User Income Deleted");
     } catch (error) {
       console.error(error);

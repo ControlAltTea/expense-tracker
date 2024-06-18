@@ -1,5 +1,7 @@
 import { useState, useEffect, React } from "react";
 
+//same logic as income components
+
 export default function RenderSavings({ postChange }) {
   const token = sessionStorage.getItem("jwt-token");
 

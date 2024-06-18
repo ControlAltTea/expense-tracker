@@ -1,6 +1,8 @@
 import { useState, React } from "react";
 import RenderSavings from "./RenderSavings";
 
+//same logic as income components
+
 export default function SavingsForm() {
   const token = sessionStorage.getItem("jwt-token");
 
@@ -29,7 +31,6 @@ export default function SavingsForm() {
     let addSavingsUrl = "/api/expense/addSaving";
 
     try {
- 
       const postResponse = await fetch(addSavingsUrl, {
         method: "POST",
         headers: {
@@ -46,13 +47,11 @@ export default function SavingsForm() {
       setPostChange(await postResponse.json());
       console.log("User Savings Posted");
 
-
       setFormData(emptyForm);
     } catch (error) {
       console.error(error);
     }
   }
-
 
   return (
     <>
@@ -125,7 +124,7 @@ export default function SavingsForm() {
         </div>
 
         <div className="w-full h-fit min-w-sm">
-          <RenderSavings postChange={postChange}/>
+          <RenderSavings postChange={postChange} />
         </div>
       </div>
     </>
