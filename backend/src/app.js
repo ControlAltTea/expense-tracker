@@ -8,6 +8,8 @@ const registerRouter = require("./routes/registerRouter");
 const dashBoardRouter = require("./routes/dashboardRouter");
 const expenseRouter = require("./routes/expenseRouter");
 
+const path = require("path");
+
 const middleware = require("./middlewares/middleware");
 
 const OpenAI = require("openai");
@@ -35,14 +37,15 @@ app.post("/api/openAi", async (req, res) => {
     return res.status(400).json("No Body");
   }
 
-  let prompt = req.body.question;
+  let prompt =
+    "You are a financial expert assistant and you will support this user and you are given this question" +
+    req.body.question;
 
-  console.log(prompt);
   try {
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "assistant", content: prompt }],
-      model: "gpt-3.5-turbo",
-      max_tokens: 150,
+      model: "GPT-4 Turbo",
+      max_tokens: 250,
     });
 
     const message = chatCompletion.choices[0].message.content;
@@ -67,6 +70,10 @@ app.use(
   passport.authenticate("jwt", { session: false }),
   expenseRouter
 );
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
