@@ -4,9 +4,7 @@ import IncomeForm from "../components/IncomeComponent/IncomeForm";
 function Home() {
   return (
     <div>
-      <div>
-        <ExpenseGoals />
-      </div>
+      <div></div>
     </div>
   );
 }

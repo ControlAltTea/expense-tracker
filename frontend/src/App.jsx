@@ -13,23 +13,32 @@ export const AuthContext = createContext();
 export const NameContext = createContext();
 
 function App() {
+  //Declare state that will be accessible from other components
 
-//Declare state that will be accessible from other components
-const [loggedIn, setLoggedIn] = useState(false);
-const [userName, setUserName] = useState('')
+  const [loggedIn, setLoggedIn] = useState(
+    sessionStorage.getItem("jwt-token") ? true : false
+  );
+  const [userName, setUserName] = useState(
+    loggedIn ? sessionStorage.getItem("user") : ""
+  );
 
-//Wrap App with provider and set values to state declared earlier
+  //Wrap App with provider and set values to state declared earlier
   return (
-    <AuthContext.Provider value={{loggedIn, setLoggedIn}}>
-      <NameContext.Provider value={{userName, setUserName}}>
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+      <NameContext.Provider value={{ userName, setUserName }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/dashboard"
+            element={loggedIn ? <Dashboard /> : <Login />}
+          />
+          <Route path="/login" element={loggedIn ? <Dashboard /> : <Login />} />
+          <Route
+            path="/signup"
+            element={loggedIn ? <Dashboard /> : <Signup />}
+          />
+        </Routes>
       </NameContext.Provider>
     </AuthContext.Provider>
   );

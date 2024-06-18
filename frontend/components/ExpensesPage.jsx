@@ -1,16 +1,13 @@
-import { React, useState, useEffect, useContext } from "react";
-
 // Import expense-tracker components
 import SavingsForm from "./SavingsComponent/SavingsForm";
 import IncomeForm from "./IncomeComponent/IncomeForm";
 import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
 //import context for name
-import { NameContext } from "../src/App";
 
 function ExpenseGoals() {
   //use userName object from context to render user's name
-  const { userName } = useContext(NameContext);
+  const userName = sessionStorage.getItem("name");
 
   return (
     <>
