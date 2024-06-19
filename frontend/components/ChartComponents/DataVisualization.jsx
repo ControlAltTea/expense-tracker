@@ -51,7 +51,7 @@ function DataVisualization() {
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {

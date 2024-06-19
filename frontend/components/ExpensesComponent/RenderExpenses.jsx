@@ -14,7 +14,7 @@ export default function RenderExpenses({ postChange }) {
 
   async function deleteExpense(id) {
     const token = sessionStorage.getItem("jwt-token");
-    const deleteExpenseUrl = `http://localhost:3001/api/expense/deleteExpense/${id}`;
+    const deleteExpenseUrl = `/api/expense/deleteExpense/${id}`;
 
     //include token authentication in headers
     //await for fetch to make a DELETE request
@@ -39,11 +39,10 @@ export default function RenderExpenses({ postChange }) {
     }
   }
 
-
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {
@@ -74,9 +73,7 @@ export default function RenderExpenses({ postChange }) {
   return (
     <>
       <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 ">
-        <h5 className="text-xl font-medium text-gray-900">
-          Expenses
-        </h5>
+        <h5 className="text-xl font-medium text-gray-900">Expenses</h5>
       </div>
 
       <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">

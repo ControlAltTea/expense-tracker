@@ -35,7 +35,7 @@ export default function ExpensesForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addExpenseUrl = "/expense/addExpense";
+    let addExpenseUrl = "/api/expense/addExpense";
 
     try {
       const postResponse = await fetch(addExpenseUrl, {
