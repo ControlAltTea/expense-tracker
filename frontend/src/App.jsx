@@ -40,9 +40,18 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/dashboard"
+              element={loggedIn ? <Dashboard /> : <Login />}
+            />
+            <Route
+              path="/login"
+              element={loggedIn ? <Dashboard /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              element={loggedIn ? <Dashboard /> : <Signup />}
+            />
           </Routes>
         </ExpenseContext.Provider>
       </IncomeContext.Provider>
