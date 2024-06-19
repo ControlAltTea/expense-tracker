@@ -44,7 +44,7 @@ app.post("/api/openAi", async (req, res) => {
   try {
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "assistant", content: prompt }],
-      model: "GPT-4 Turbo",
+      model: "gpt-3.5-turbo",
       max_tokens: 250,
     });
 
