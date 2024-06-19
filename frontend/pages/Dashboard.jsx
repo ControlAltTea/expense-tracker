@@ -1,4 +1,3 @@
-import { React } from "react";
 import ChatBar from "../components/ChatBar";
 import ExpenseGoals from "../components/ExpensesPage";
 
