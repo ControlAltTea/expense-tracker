@@ -45,6 +45,10 @@ function App() {
               path="/dashboard"
               element={loggedIn ? <Dashboard /> : <Login />}
             />
+                        <Route
+              path="/overview"
+              element={loggedIn ? <Overview /> : <Login />}
+            />
             <Route
               path="/login"
               element={loggedIn ? <Dashboard /> : <Login />}

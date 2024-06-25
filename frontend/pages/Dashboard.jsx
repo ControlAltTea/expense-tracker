@@ -1,5 +1,5 @@
 import ChatBar from "../components/ChatBar";
-import ExpenseGoals from "../components/Dashboard";
+import ExpenseGoals from "../components/ExpensesPage";
 
 function Dashboard() {
   return (
