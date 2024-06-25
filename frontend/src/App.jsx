@@ -4,10 +4,12 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Overview from "../pages/Overview"
+import Overview from "../pages/Overview";
+import Footer from "../components/Footer";
 
 import { Route, Routes, HashRouter } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
+import Team from "../pages/Team";
 
 //Create context
 export const AuthContext = createContext();
@@ -45,7 +47,7 @@ function App() {
               path="/dashboard"
               element={loggedIn ? <Dashboard /> : <Login />}
             />
-                        <Route
+            <Route
               path="/overview"
               element={loggedIn ? <Overview /> : <Login />}
             />
@@ -57,7 +59,14 @@ function App() {
               path="/signup"
               element={loggedIn ? <Dashboard /> : <Signup />}
             />
+
+            <Route
+              path="/team"
+              element={loggedIn ? <Team /> : <Signup />}
+            />
           </Routes>
+
+          <Footer />
         </ExpenseContext.Provider>
       </IncomeContext.Provider>
     </AuthContext.Provider>
