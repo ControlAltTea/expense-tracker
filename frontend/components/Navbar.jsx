@@ -19,7 +19,7 @@ function Navbar() {
   //remove token from browser storage
   //set loggedIn to false and navigate to homepage
   function handleLogout() {
-    sessionStorage.removeItem("jwt-token");
+    sessionStorage.clear();
     setLoggedIn(false);
     console.log(`User Signed Out`);
     navigate("/");

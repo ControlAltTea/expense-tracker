@@ -3,18 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 //Import ToastContainer, this is where notification is rendered
 //Import toast to utilize notifications
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Import context from App.jsx
 import { AuthContext } from "../src/App";
-import { NameContext } from "../src/App";
-
 
 function Login() {
   //Hook to redirect to a different route
   const navigate = useNavigate();
-
 
   // State variable for email and password input fields
   const [email, setEmail] = useState("");
@@ -22,8 +19,8 @@ function Login() {
 
   //Destructure setLoggedIn from context
   //Accessible from App.jsx
-  const {setLoggedIn} = useContext(AuthContext);
-  const {setUserName} = useContext(NameContext);
+
+  const { setLoggedIn } = useContext(AuthContext);
 
   // Event handler for email input change
   function handleEmailChange(e) {
@@ -40,7 +37,7 @@ function Login() {
     e.preventDefault(); // Prevent default form submission behavior
 
     //Backend URLfor login
-    const loginUrl = "http://localhost:3001/api/login";
+    const loginUrl = "/api/login";
     const data = { email, password };
 
     //Checks if email or password is missing
@@ -75,10 +72,11 @@ function Login() {
         //store token in brower's session storage
         const responseData = await response.json();
 
-        console.log(responseData);
-
         const token = responseData.token;
         sessionStorage.setItem("jwt-token", token);
+        sessionStorage.setItem("email", responseData.user.email);
+        sessionStorage.setItem("id", responseData.user.id);
+        sessionStorage.setItem("name", responseData.user.name);
 
         // Reset input fields back to empty
         setEmail("");
@@ -87,7 +85,8 @@ function Login() {
         //Set loggedIn state to true
         setLoggedIn(true);
         //Set username's value to name
-        setUserName(responseData.user.name)
+
+        // setUserName(responseData.user.name);
 
         // Redirect to dashboard after successful login
         navigate("/dashboard");

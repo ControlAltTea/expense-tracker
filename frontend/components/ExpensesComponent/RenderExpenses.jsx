@@ -1,83 +1,82 @@
-import {useState, useEffect, React} from "react";
+import { useState, useEffect, React, useContext } from "react";
+
+import { ExpenseContext } from "../../src/App";
+
+//same logic as income components
 
 export default function RenderExpenses({ postChange }) {
-
-const token = sessionStorage.getItem("jwt-token");
-
-const [expenseData, setExpenseData] = useState([]);
-
-const [deleteChange, setDeleteChange] = useState('')
-
-async function deleteExpense(id) {
   const token = sessionStorage.getItem("jwt-token");
-  const deleteExpenseUrl = `http://localhost:3001/api/expense/deleteExpense/${id}`;
 
-  //include token authentication in headers
-  //await for fetch to make a DELETE request
-  try {
-    const deleteResponse = await fetch(deleteExpenseUrl, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  const [expenseData, setExpenseData] = useState([]);
 
+  const [deleteChange, setDeleteChange] = useState("");
+  const { setExpenseResponse } = useContext(ExpenseContext);
 
-    if (!deleteResponse.ok) {
-      throw new Error(`${deleteResponse.status}`);
-    }
+  async function deleteExpense(id) {
+    const token = sessionStorage.getItem("jwt-token");
+    const deleteExpenseUrl = `/api/expense/deleteExpense/${id}`;
 
-    setDeleteChange(await deleteResponse.json());
-    console.log("User Expense Deleted");
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-
-useEffect(() => {
-  async function getData() {
-    //await for fetch to make a GET request
-    let dashboardUrl = "http://localhost:3001/api/dashboard";
-
+    //include token authentication in headers
+    //await for fetch to make a DELETE request
     try {
-      const getResponse = await fetch(dashboardUrl, {
-        method: "GET",
+      const deleteResponse = await fetch(deleteExpenseUrl, {
+        method: "DELETE",
         headers: {
-          "Content-Type": "application/json", // Set request content type to JSON
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
-
-      if (!getResponse.ok) {
-        throw new Error(`${getResponse.status}`);
+      if (!deleteResponse.ok) {
+        throw new Error(`${deleteResponse.status}`);
       }
 
-      const data = await getResponse.json();
-
-      console.log("User Expenses Retrieved");
-
-      setExpenseData(data.data.Expense);
+      setDeleteChange(await deleteResponse.json());
+      setExpenseResponse(deleteResponse);
+      console.log("User Expense Deleted");
     } catch (error) {
       console.error(error);
     }
   }
-  //call the getData() function when component mounts
-  getData();
-}, [deleteChange, postChange]);
+
+  useEffect(() => {
+    async function getData() {
+      //await for fetch to make a GET request
+      let dashboardUrl = "/api/dashboard";
+
+      try {
+        const getResponse = await fetch(dashboardUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json", // Set request content type to JSON
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!getResponse.ok) {
+          throw new Error(`${getResponse.status}`);
+        }
+
+        const data = await getResponse.json();
+
+        console.log("User Expenses Retrieved");
+
+        setExpenseData(data.data.Expense);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    //call the getData() function when component mounts
+    getData();
+  }, [deleteChange, postChange]);
 
   return (
     <>
-      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-          Expenses
-        </h5>
+      <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 ">
+        <h5 className="text-xl font-medium text-gray-900">Expenses</h5>
       </div>
 
-
-<div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
+      <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
         <div>
           {/* use map() to dynamically render updatedData */}
           <ul>
@@ -108,7 +107,9 @@ useEffect(() => {
 
                   <li className="flex">
                     <div className="text-sm font-medium mr-2">Recurrence:</div>
-                    <div className="text-sm font-small">{expense.frequency}</div>
+                    <div className="text-sm font-small">
+                      {expense.frequency}
+                    </div>
                   </li>
 
                   <li className="flex">

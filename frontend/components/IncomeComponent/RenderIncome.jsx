@@ -1,4 +1,7 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useContext} from "react";
+
+//import IncomeContext from App.jsx
+import { IncomeContext } from "../../src/App";
 
 //pass incomeData from parent component to render dynamically here
 function RenderIncome({ postChange }) {
@@ -12,12 +15,17 @@ function RenderIncome({ postChange }) {
   //backend's delete response is stored here
   const [deleteChange, setDeleteChange] = useState('');
 
+  //grab setIncomeResponse from context we created at App.jsx
+  //can be used globally 
+  //used in data visualization with useEffect to dynamically render charts when this state is changed/updated
+  const {setIncomeResponse} = useContext(IncomeContext);
+
 
   //function to delete income
   //send delete request to backend api
   //takes id as parameter to delete specific income, id is used at the end of backend's url
   async function deleteIncome(id) {
-    const deleteIncomeUrl = `http://localhost:3001/api/expense/deleteIncome/${id}`;
+    const deleteIncomeUrl = `/api/expense/deleteIncome/${id}`;
 
     //include token authentication in headers
     //await for fetch to make a DELETE request
@@ -37,6 +45,8 @@ function RenderIncome({ postChange }) {
 
       //store response in deleteChange state
       setDeleteChange(await deleteResponse.json());
+      //update incomeResponse state
+      setIncomeResponse(deleteResponse);
       console.log("User Income Deleted");
     } catch (error) {
       console.error(error);
@@ -48,7 +58,7 @@ function RenderIncome({ postChange }) {
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {
@@ -81,7 +91,6 @@ function RenderIncome({ postChange }) {
     getData();
   }, [deleteChange, postChange]);
 
-
   return (
     <>
       <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -89,7 +98,7 @@ function RenderIncome({ postChange }) {
           Income
         </h5>
       </div>
-      
+
       <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
         <div className="">
           {/* use map() to dynamically render updatedData */}

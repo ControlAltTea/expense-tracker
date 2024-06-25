@@ -1,9 +1,10 @@
-import { React, useState } from "react";
+import { React, useState, useContext} from "react";
 import RenderIncome from "./RenderIncome";
+
+import { IncomeContext } from "../../src/App";
 
 //component responsible for rendering form, posting data, and getting data
 function IncomeForm() {
-
   //grab token from browser to authenticate user by using token in post request headers
   const token = sessionStorage.getItem("jwt-token");
 
@@ -16,7 +17,6 @@ function IncomeForm() {
     targetDate: "",
   };
 
-
   //state to hold all the data being inputted into form, initialize it to emptyForm
   const [formData, setFormData] = useState(emptyForm);
 
@@ -25,6 +25,8 @@ function IncomeForm() {
   //passed as prop to RenderIncome component
   const [postChange, setPostChange] = useState('');
 
+
+  const {setIncomeResponse} = useContext(IncomeContext);
 
   //function that handles changes in our form
   //takes in the event parameter
@@ -47,7 +49,7 @@ function IncomeForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addIncomeUrl = "http://localhost:3001/api/expense/addIncome";
+    let addIncomeUrl = "/api/expense/addIncome";
 
     try {
       //await for fetch to make a POST request
@@ -68,6 +70,7 @@ function IncomeForm() {
       }
 
       setPostChange(await postResponse.json())
+      setIncomeResponse(postResponse)
       console.log("User Data Posted");
 
       //reset the inputs by setting formData back to emptyForm
@@ -78,16 +81,12 @@ function IncomeForm() {
     }
   }
 
-
-
   return (
     <>
       <div className="flex flex-col min-w-96 md:flex-row lg:flex-col">
         <div className="w-full h-fit max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-xl font-medium text-gray-900">
-              Add Income
-            </h5>
+            <h5 className="text-xl font-medium text-gray-900">Add Income</h5>
 
             <div className="mb-5">
               <label
@@ -177,7 +176,6 @@ function IncomeForm() {
                   <option id="3">Weekly</option>
                   <option id="4">Bi-weekly</option>
                   <option id="5">Monthly</option>
-                  <option id="5">Yearly</option>
                 </select>
               </div>
             </div>

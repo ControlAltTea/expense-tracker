@@ -1,27 +1,21 @@
-import { React, useState, useEffect, useContext } from "react";
-
 // Import expense-tracker components
 import SavingsForm from "./SavingsComponent/SavingsForm";
 import IncomeForm from "./IncomeComponent/IncomeForm";
 import ExpensesForm from "./ExpensesComponent/ExpensesForm";
 
 //import context for name
-import { NameContext } from "../src/App";
+import DataVisualization from "./ChartComponents/DataVisualization";
 
 function ExpenseGoals() {
-  //use userName object from context to render user's name
-  const { userName } = useContext(NameContext);
-
   return (
     <>
-      <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
-
-      <div className="flex flex-col justify-items-center">
-        <div className="flex flex-col justify-evenly m-8 lg:flex-row">
+      <div className="flex-col">
+        <DataVisualization />
+      </div>
+      <div className="flex flex-col justify-items-center ">
+        <div className="flex flex-col justify-evenly lg:flex-row">
           <SavingsForm />
-
           <IncomeForm />
-
           <ExpensesForm />
         </div>
       </div>

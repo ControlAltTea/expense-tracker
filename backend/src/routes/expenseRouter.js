@@ -159,7 +159,7 @@ expenseRouter.delete("/deleteIncome/:id", async (req, res) => {
     return res.status(200).json({
       status: "success",
       message: "Income Delete",
-      data: expenseId.id,
+      data: deleteIncome.id,
     });
   } catch (error) {
     return res
