@@ -20,11 +20,7 @@ function Login() {
   //Destructure setLoggedIn from context
   //Accessible from App.jsx
 
-  const {setLoggedIn} = useContext(AuthContext);
-
-
-  const { setUserName } = useContext(NameContext);
-
+  const { setLoggedIn } = useContext(AuthContext);
 
   // Event handler for email input change
   function handleEmailChange(e) {
@@ -90,8 +86,7 @@ function Login() {
         setLoggedIn(true);
         //Set username's value to name
 
-        setUserName(responseData.user.name);
-
+        // setUserName(responseData.user.name);
 
         // Redirect to dashboard after successful login
         navigate("/dashboard");
@@ -114,9 +109,6 @@ function Login() {
       console.error(error);
     }
   }
-
-
-
 
   return (
     <>

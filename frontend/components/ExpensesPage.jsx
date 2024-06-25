@@ -1,8 +1,8 @@
-
 // Import expense-tracker components
 import SavingsForm from "./SavingsComponent/SavingsForm";
 import IncomeForm from "./IncomeComponent/IncomeForm";
 import ExpensesForm from "./ExpensesComponent/ExpensesForm";
+import DataVisualization from "./ChartComponents/DataVisualization";
 
 //import context for name
 
@@ -13,6 +13,10 @@ function ExpenseGoals() {
   return (
     <>
       <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
+
+      <div className="flex-col">
+        <DataVisualization />
+      </div>
 
       <div className="flex flex-col justify-items-center">
         <div className="flex flex-col justify-evenly m-8 lg:flex-row">
@@ -28,4 +32,3 @@ function ExpenseGoals() {
 }
 
 export default ExpenseGoals;
-
