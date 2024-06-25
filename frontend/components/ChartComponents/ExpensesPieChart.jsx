@@ -7,9 +7,10 @@ function ExpensesPieChart({ expenseData }) {
   //declare options for customizability of pie chart
   const options = {
     title: 'Expenses',
+    backgroundColor: "transparent", 
     is3D: true,
-    width: 450,
-    height: 450,
+    width: 400,
+    height: 400,
     legend: "none",
   };
 
@@ -20,7 +21,7 @@ function ExpensesPieChart({ expenseData }) {
     <div className="flex-column">
 
       {expenseData.length < 2 && (
-        <div>Add Expenses To Visualize Your Finances.</div>
+        <div className="p-6">Add Expenses To Visualize Your Finances.</div>
       )}
 
       {expenseData.length > 1 && (

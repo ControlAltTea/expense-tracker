@@ -35,7 +35,7 @@ export default function ExpensesForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let addExpenseUrl = "http://localhost:3001/api/expense/addExpense";
+    let addExpenseUrl = "/api/expense/addExpense";
 
     try {
       const postResponse = await fetch(addExpenseUrl, {
@@ -94,7 +94,7 @@ export default function ExpensesForm() {
                   Amount
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="amount"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="$"

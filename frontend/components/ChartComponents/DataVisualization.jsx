@@ -51,7 +51,7 @@ function DataVisualization() {
   useEffect(() => {
     async function getData() {
       //await for fetch to make a GET request
-      let dashboardUrl = "http://localhost:3001/api/dashboard";
+      let dashboardUrl = "/api/dashboard";
 
       try {
         const getResponse = await fetch(dashboardUrl, {
@@ -212,7 +212,7 @@ function DataVisualization() {
         ];
 
         //variable which stores and calculates net income
-        const netIncome = "$" + (totalIncome - totalExpense).toFixed(2);
+        const netIncome = (totalIncome - totalExpense).toFixed(2);
 
         //lastly update the incomeData, expenseData, barData, and netIncome state so that we can pass it to child components in order to implement it with
         //react-google-charts
@@ -234,17 +234,17 @@ function DataVisualization() {
     <>
       <div className="flex flex-col items-center">
         <div className="w-5/6 h-fit text-center p-6 bg-green-100 border border-gray-200  mt-12 rounded-lg shadow text-xl font-medium text-gray-900">
-          Projected Monthly Expenses
+          Average Monthly Finances
         </div>
         <div className="bg-white border w-5/6 border-gray-200 rounded-lg shadow mb-12">
-          <div className="flex justify-evenly items-center">
+          <div className="flex justify-evenly items-center flex-col md:flex-col lg:flex-row">
             <IncomePieChart incomeData={incomeData} />
             <ExpensesPieChart expenseData={expenseData} />
           </div>
         </div>
 
         <div className="w-5/6 h-fit text-center p-6 bg-green-100  border border-gray-200 rounded-lg shadow text-xl font-medium text-gray-900">
-          Projected Monthly Net Income
+          Average Monthly Net Income
         </div>
         <div className="h-fit w-5/6 bg-white border border-gray-200 rounded-lg shadow mb-12 pt-12">
           <BarChart barData={barData} netIncome={netIncome} />

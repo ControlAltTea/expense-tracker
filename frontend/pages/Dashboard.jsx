@@ -1,6 +1,6 @@
 import { React } from "react";
 import ChatBar from "../components/ChatBar";
-import ExpenseGoals from "../components/ExpensesPage";
+import ExpenseGoals from "../components/Dashboard";
 
 function Dashboard() {
   return (

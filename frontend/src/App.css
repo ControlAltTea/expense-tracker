@@ -1,4 +1,7 @@
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f0f8ff;
 }
@@ -29,3 +32,4 @@ body {
   justify-content: center;
   margin-top: 4rem;
 }
+

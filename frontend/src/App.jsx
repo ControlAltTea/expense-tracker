@@ -4,8 +4,9 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Overview from "../pages/Overview"
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 
 //Create context
@@ -38,12 +39,15 @@ function App() {
         >
           <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/overview" element={<Overview />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
+
+
         </ExpenseContext.Provider>
       </IncomeContext.Provider>
     </AuthContext.Provider>

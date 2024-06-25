@@ -32,7 +32,8 @@ function Navbar() {
 
       <ul className="flex">
         <li className="">{loggedIn && <Link to="/dashboard">Dashboard</Link>}</li>
-        <li className="ml-2 mr-2">{!loggedIn && <Link to="/login">Log In</Link>}</li>
+        <li className="ml-5">{loggedIn && <Link to="/overview">Overview</Link>}</li>
+        <li className="">{!loggedIn && <Link to="/login">Log In</Link>}</li>
         <li className="ml-2 mr-2">{!loggedIn && <Link to="/signup">Sign Up</Link>}</li>
 
         {loggedIn && (

@@ -18,7 +18,7 @@ function ExpenseGoals() {
           <DataVisualization />
       </div>
 
-      <div className="flex flex-col justify-items-center ">
+      <div className="flex flex-col justify-items-center mb-64">
         <div className="flex flex-col justify-evenly lg:flex-row">
           <SavingsForm />
 
