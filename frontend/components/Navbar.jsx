@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 //Import context from App.jsx
 import { AuthContext } from "../src/App";
 
+// Import expense tracker logo
+import ExTra from "/img/ExTra_logo.svg";
+
 function Navbar() {
   //Destructure loggedIn state and setLoggedIn function from context
   //So that this is accessible from App.jsx
@@ -25,9 +28,10 @@ function Navbar() {
   return (
     // conditionally render links in navbar depending on loggedIn state
 
-    <nav className="bg-green-300 flex justify-between items-center p-5">
+    <nav className="bg-green-300 flex justify-between items-center p-5 font-bold">
       <Link className="text-3xl" to="/">
-        Expense Tracker
+        {/* <img src={ExTra}></img> */}
+        ExTra
       </Link>
 
       <ul className="flex">

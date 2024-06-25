@@ -1,12 +1,35 @@
-body,html{
+body,
+html {
   background-color: #f0f8ff;
+}
+
+.homepageVector1 {
+  background-image: url(/img/home-vector-1.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 79.5vw;
+  height: 79.5vh;
+}
+
+.homepageVector2 {
+  background-image: url(/img/home-vector-2.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 82vw;
+  height: 82vh;
+}
+
+.homepageVector3 {
+  background-image: url(/img/home-vector-3.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 87vw;
+  height: 87vh;
+}
+
+.homepageBackground {
+  background-image: url(/img/home-vector-1.svg), url(/img/home-vector-2.svg), url(/img/home-vector-3.svg);
+  background-repeat: no-repeat;
+  width: 100%;
   height: 100%;
 }
-
-.homepageBackground{
-  background-image:
-    url(/frontend/public/img/home-vector-1.svg),
-    url(/frontend/public/img/home-vector-2.svg),
-    url(/frontend/public/img/home-vector-3.svg);
-}
-
