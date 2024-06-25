@@ -22,7 +22,7 @@ function Login() {
 
   const {setLoggedIn} = useContext(AuthContext);
 
-  const { setLoggedIn } = useContext(AuthContext);
+
   const { setUserName } = useContext(NameContext);
 
 
