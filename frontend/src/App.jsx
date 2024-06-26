@@ -6,8 +6,8 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Overview from "../pages/Overview";
 
-import { Route, Routes, HashRouter } from "react-router-dom";
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import { createContext, useState, useEffect } from "react";
 
 //Create context
@@ -53,6 +53,10 @@ function App() {
             <Route
               path="/signup"
               element={!loggedIn ? <Signup /> : <Navigate to={"/dashboard"} />}
+            />
+            <Route
+              path="/overview"
+              element={!loggedIn ? <Signup /> : <Overview />}
             />
           </Routes>
         </ExpenseContext.Provider>
