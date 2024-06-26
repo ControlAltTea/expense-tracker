@@ -5,12 +5,10 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Overview from "../pages/Overview";
-import Footer from "../components/Footer";;
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { createContext, useState, useEffect } from "react";
-import Team from "../pages/Team";
 
 //Create context
 export const AuthContext = createContext();
@@ -60,14 +58,7 @@ function App() {
               path="/overview"
               element={!loggedIn ? <Signup /> : <Overview />}
             />
-
-            <Route
-              path="/team"
-              element={loggedIn ? <Team /> : <Signup />}
-            />
           </Routes>
-
-          <Footer />
         </ExpenseContext.Provider>
       </IncomeContext.Provider>
     </AuthContext.Provider>
