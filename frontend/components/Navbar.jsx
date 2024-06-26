@@ -69,10 +69,7 @@ function Navbar() {
           {!loggedIn && (
             <Link to="/login">
               <div className="flex items-center">
-                <img
-                  className="h-[30px] mr-2"
-                  src="/public/Icons/log-in1.png"
-                />
+                <img className="h-[30px] mr-2" src="/Icons/log-in1.png" />
                 <div>Log In</div>
               </div>
             </Link>
@@ -82,10 +79,7 @@ function Navbar() {
           {!loggedIn && (
             <Link to="/signup">
               <div className="flex items-center">
-                <img
-                  className="h-[30px] mr-1"
-                  src="/public/Icons/sign-up.png"
-                />
+                <img className="h-[30px] mr-1" src="/Icons/sign-up.png" />
                 <div>Sign Up</div>
               </div>
             </Link>
