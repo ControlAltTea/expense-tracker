@@ -152,8 +152,22 @@ function Signup() {
         setEmail("");
         setPassword("");
 
+
+        toast.success("Redirecting to Log In Page, Please Log In With Newly Created Account.", {
+          position: "top-center",
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
+
         //redirect to login page so user can log in with newly created account
-        navigate("/login");
+        //setTimeout to delay redirect
+        setTimeout(() => {
+          navigate("/login");
+        }, 3600);
       } else {
         throw new Error(`${response.status}`);
       }
