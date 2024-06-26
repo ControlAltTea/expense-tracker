@@ -1,4 +1,5 @@
 import { useState, useEffect, React } from "react";
+import { Link } from "react-router-dom";
 
 //same logic as income components
 
@@ -52,7 +53,7 @@ export default function RenderSavings({ postChange }) {
 
         console.log("User Savings Retrieved");
 
-        setSavingsData(data.data.Saving);
+        setSavingsData(data.data.Saving.reverse());
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +68,7 @@ export default function RenderSavings({ postChange }) {
       </div>
 
       <div className="w-full h-fit max-w-sm bg-green-200 border border-gray-200 rounded-lg shadow">
-        {savingsData.map(function (savings, key) {
+        {savingsData.slice(0, 3).map(function (savings, key) {
           return (
             <div
               key={key}
@@ -95,7 +96,6 @@ export default function RenderSavings({ postChange }) {
               </ul>
 
               <button
-                //pass income.id through delete function to delete specific income
                 onClick={() => deleteSavings(savings.id)}
                 type="button"
                 className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
@@ -105,7 +105,13 @@ export default function RenderSavings({ postChange }) {
             </div>
           );
         })}
+              <Link to="/overview">
+            <button className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 text-center">
+              View All
+            </button>
+          </Link>
       </div>
+
     </>
   );
 }

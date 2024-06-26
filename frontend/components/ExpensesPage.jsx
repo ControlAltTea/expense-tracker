@@ -12,7 +12,7 @@ function ExpenseGoals() {
 
   return (
     <>
-      <div className="text-4xl text-center pt-8 pb-8">Hi, {userName}!</div>
+      <div className="text-4xl text-center pt-8">Hi, {userName}!</div>
 
       <div className="flex-col">
         <DataVisualization />

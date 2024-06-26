@@ -1,6 +1,10 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "/src/App.css";
+
+import ExpenseGoals from "../components/Dashboard";
+import IncomeForm from "../components/IncomeComponent/IncomeForm";
 
 function Home() {
   return (
@@ -30,7 +34,7 @@ function Home() {
                 Track your expenses with built in features such as recurrence
                 and category
               </div>
-            </div>
+            </div> 
             <div className="flex flex-col w-full max-w-xs p-4 bg-white border border-gray-200 rounded-lg shadow-xl sm:p-6 md:p-8">
               <div className="text-2xl font-semibold">3. Save Money</div>
               <div className="text-xl">
