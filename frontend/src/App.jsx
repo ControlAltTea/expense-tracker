@@ -5,9 +5,10 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Overview from "../pages/Overview";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer";;
 
-import { Route, Routes, HashRouter } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import { createContext, useState, useEffect } from "react";
 import Team from "../pages/Team";
 
@@ -48,16 +49,16 @@ function App() {
               element={loggedIn ? <Dashboard /> : <Login />}
             />
             <Route
-              path="/overview"
-              element={loggedIn ? <Overview /> : <Login />}
-            />
-            <Route
               path="/login"
-              element={loggedIn ? <Dashboard /> : <Login />}
+              element={!loggedIn ? <Login /> : <Navigate to={"/dashboard"} />}
             />
             <Route
               path="/signup"
-              element={loggedIn ? <Dashboard /> : <Signup />}
+              element={!loggedIn ? <Signup /> : <Navigate to={"/dashboard"} />}
+            />
+            <Route
+              path="/overview"
+              element={!loggedIn ? <Signup /> : <Overview />}
             />
 
             <Route

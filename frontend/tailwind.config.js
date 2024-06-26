@@ -8,7 +8,11 @@ export default {
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend:{
+      colors:{
+        'exTraGreen': '#62E3AB',
+      },
+    },
   },
   plugins: [
     '@tailwindcss/forms',
