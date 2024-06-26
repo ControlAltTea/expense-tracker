@@ -9,7 +9,7 @@ function Footer() {
           <div>
             <img className="mr-2 h-8" src="/Icons/team.png" alt="Team Icon" />
           </div>
-          <div>Meet The Team</div>
+          <div className="font-bold">Meet The Team</div>
         </Link>
       </div>
     </footer>
