@@ -1,4 +1,6 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
+import Footer from "../components/Footer";
+
 import { Link, useNavigate } from "react-router-dom";
 
 //Import ToastContainer, this is where notification is rendered
@@ -111,8 +113,8 @@ function Login() {
   }
 
   return (
-    <>
-      <div className="login-container min-h-[600px] mb-20">
+    <div className="min-h-screen">
+      <div className="login-container min-h-[600px]">
         <div className="w-full h-fit max-w-sm p-4 mt-12 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-center">
             <form onSubmit={handleLogin}>
@@ -165,8 +167,9 @@ function Login() {
           </div>
         </div>
       </div>
+
       <ToastContainer />
-    </>
+    </div>
   );
 }
 

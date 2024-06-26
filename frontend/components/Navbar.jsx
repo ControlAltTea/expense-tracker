@@ -41,10 +41,7 @@ function Navbar() {
           {loggedIn && (
             <Link to="/dashboard">
               <div className="flex items-center">
-                <img
-                  className="h-[30px] mr-1"
-                  src="/public/Icons/dashboard.png"
-                />
+                <img className="h-[30px] mr-1" src="/Icons/dashboard.png" />
                 <div>Dashboard</div>
               </div>
             </Link>
@@ -55,10 +52,7 @@ function Navbar() {
           {loggedIn && (
             <Link to="/overview">
               <div className="flex items-center">
-                <img
-                  className="h-[30px] mr-1"
-                  src="/public/Icons/overview.png"
-                />
+                <img className="h-[30px] mr-1" src="/Icons/overview.png" />
                 <div>Overview</div>
               </div>
             </Link>
@@ -90,10 +84,7 @@ function Navbar() {
           <li className="mr-2">
             <button onClick={handleLogout} className="">
               <div className="flex items-center">
-                <img
-                  className="h-[30px] mr-1"
-                  src="/public/Icons/log-out.png"
-                />
+                <img className="h-[30px] mr-1" src="/Icons/log-out.png" />
                 <div>Log Out</div>
               </div>
             </button>

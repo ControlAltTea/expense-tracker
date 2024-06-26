@@ -152,16 +152,17 @@ function Signup() {
         setEmail("");
         setPassword("");
 
-
-        toast.success("Redirecting to Log In Page, Please Log In With Newly Created Account.", {
-          position: "top-center",
-          hideProgressBar: true,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-
+        toast.success(
+          "Redirecting to Log In Page, Please Log In With Newly Created Account.",
+          {
+            position: "top-center",
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
 
         //redirect to login page so user can log in with newly created account
         //setTimeout to delay redirect
@@ -177,12 +178,12 @@ function Signup() {
   }
 
   return (
-    <>
-      <div className="signup-container mb-20">
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <div className="min-h-screen">
+      <div className="signup-container">
+        <div className=" w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
           <div className="flex justify-center">
             <form onSubmit={handleSignUp}>
-              <div className="w-60 text-xl font-medium mb-12 mt-12 text-gray-900">
+              <div className="w-60 text-xl font-medium mt-12 text-gray-900">
                 <h5 className="flex justify-center">Sign up for an account</h5>
               </div>
 
@@ -242,7 +243,7 @@ function Signup() {
                   </button>
                 </div>
 
-                <div className="flex items-center flex-col py-4">
+                <div className="flex items-center flex-col py-4 mt-5 ">
                   <div className="text-sm font-medium text-gray-900">
                     Already Have an Account
                   </div>
@@ -259,7 +260,7 @@ function Signup() {
         </div>
       </div>
       <ToastContainer />
-    </>
+    </div>
   );
 }
 
