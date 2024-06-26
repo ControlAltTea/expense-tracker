@@ -5,7 +5,7 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 
 //Create context
@@ -42,15 +42,15 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/dashboard"
-              element={loggedIn ? <Dashboard /> : <Login />}
+              element={!loggedIn ? <Dashboard /> : <Navigate to={"/"} />}
             />
             <Route
               path="/login"
-              element={loggedIn ? <Dashboard /> : <Login />}
+              element={!loggedIn ? <Login /> : <Navigate to={"/dashboard"} />}
             />
             <Route
               path="/signup"
-              element={loggedIn ? <Dashboard /> : <Signup />}
+              element={!loggedIn ? <Signup /> : <Navigate to={"/dashboard"} />}
             />
           </Routes>
         </ExpenseContext.Provider>
