@@ -5,6 +5,8 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Overview from "../pages/Overview";
+import Footer from "../components/Footer";
+import Team from "../pages/Team"
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -58,7 +60,11 @@ function App() {
               path="/overview"
               element={!loggedIn ? <Signup /> : <Overview />}
             />
+
+            <Route path="/team" element={<Team />} />
+
           </Routes>
+          <Footer />
         </ExpenseContext.Provider>
       </IncomeContext.Provider>
     </AuthContext.Provider>
