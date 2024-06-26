@@ -4,8 +4,9 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Overview from "../pages/Overview"
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 
 //Create context
@@ -43,6 +44,10 @@ function App() {
             <Route
               path="/dashboard"
               element={loggedIn ? <Dashboard /> : <Login />}
+            />
+                        <Route
+              path="/overview"
+              element={loggedIn ? <Overview /> : <Login />}
             />
             <Route
               path="/login"

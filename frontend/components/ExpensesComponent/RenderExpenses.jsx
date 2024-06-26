@@ -1,4 +1,5 @@
 import { useState, useEffect, React, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { ExpenseContext } from "../../src/App";
 
@@ -61,7 +62,7 @@ export default function RenderExpenses({ postChange }) {
 
         console.log("User Expenses Retrieved");
 
-        setExpenseData(data.data.Expense);
+        setExpenseData(data.data.Expense.reverse());
       } catch (error) {
         console.error(error);
       }
@@ -80,57 +81,69 @@ export default function RenderExpenses({ postChange }) {
         <div>
           {/* use map() to dynamically render updatedData */}
           <ul>
-            {expenseData.map((expense, key) => (
-              <div
-                key={key}
-                className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4 relative"
-              >
-                <ul>
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Description:</div>
-                    <div className="text-sm font-small">
-                      {expense.description}
-                    </div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Category:</div>
-                    <div className="text-sm font-small">{expense.category}</div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Amount:</div>
-                    <div className="text-sm font-small">
-                      {"$" + expense.amount}
-                    </div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Recurrence:</div>
-                    <div className="text-sm font-small">
-                      {expense.frequency}
-                    </div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Date:</div>
-                    <div className="text-sm font-small">
-                      {expense.targetDate}
-                    </div>
-                  </li>
-                </ul>
-
-                <button
-                  //pass income.id through delete function to delete specific income
-                  onClick={() => deleteExpense(expense.id)}
-                  type="button"
-                  className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
+            {expenseData.slice(0, 3).map(function (expense, key) {
+              return (
+                <div
+                  key={key}
+                  className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4 relative"
                 >
-                  X
-                </button>
-              </div>
-            ))}
+                  <ul>
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">
+                        Description:
+                      </div>
+                      <div className="text-sm font-small">
+                        {expense.description}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Category:</div>
+                      <div className="text-sm font-small">
+                        {expense.category}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Amount:</div>
+                      <div className="text-sm font-small">
+                        {"$" + expense.amount}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">
+                        Recurrence:
+                      </div>
+                      <div className="text-sm font-small">
+                        {expense.frequency}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Date:</div>
+                      <div className="text-sm font-small">
+                        {expense.targetDate}
+                      </div>
+                    </li>
+                  </ul>
+
+                  <button
+                    onClick={() => deleteExpense(expense.id)}
+                    type="button"
+                    className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })}
           </ul>
+          <Link to="/overview">
+            <button className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 text-center">
+              View All
+            </button>
+          </Link>
         </div>
       </div>
     </>

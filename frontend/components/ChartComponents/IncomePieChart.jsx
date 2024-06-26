@@ -5,9 +5,10 @@ import { Chart } from "react-google-charts";
 function IncomePieChart({ incomeData }) {
   const options = {
     title: 'Income',
+    backgroundColor: "transparent", 
     is3D: true,
-    width: 450,
-    height: 450,
+    width: 400,
+    height: 400,
     legend: "none",
   };
 
@@ -15,7 +16,7 @@ function IncomePieChart({ incomeData }) {
     <div className="flex-column">
 
       {incomeData.length < 2 && (
-        <div>Add Income To Visualize Your Finances.</div>
+        <div className="p-6">Add Income To Visualize Your Finances.</div>
       )}
 
       {incomeData.length > 1 && (

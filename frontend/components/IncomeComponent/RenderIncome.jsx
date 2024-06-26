@@ -1,4 +1,5 @@
-import { React, useEffect, useState, useContext} from "react";
+import { React, useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 //import IncomeContext from App.jsx
 import { IncomeContext } from "../../src/App";
@@ -13,13 +14,12 @@ function RenderIncome({ postChange }) {
 
   //state to detect when delete request is made, state used in useEffect to trigger get request to render data
   //backend's delete response is stored here
-  const [deleteChange, setDeleteChange] = useState('');
+  const [deleteChange, setDeleteChange] = useState("");
 
   //grab setIncomeResponse from context we created at App.jsx
-  //can be used globally 
+  //can be used globally
   //used in data visualization with useEffect to dynamically render charts when this state is changed/updated
-  const {setIncomeResponse} = useContext(IncomeContext);
-
+  const { setIncomeResponse } = useContext(IncomeContext);
 
   //function to delete income
   //send delete request to backend api
@@ -81,7 +81,8 @@ function RenderIncome({ postChange }) {
         console.log("User Income Retrieved");
 
         //store income data in incomeData state variable
-        setIncomeData(data.data.Income);
+        //.reverse() to reverse array so that the first object in array will be the most recently created data
+        setIncomeData(data.data.Income.reverse());
       } catch (error) {
         //catch block for handling errors
         console.error(error);
@@ -103,55 +104,70 @@ function RenderIncome({ postChange }) {
         <div className="">
           {/* use map() to dynamically render updatedData */}
           <ul>
-            {incomeData.map((income, key) => (
-              <div
-                key={key}
-                className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4 relative"
-              >
-                <ul>
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Description:</div>
-                    <div className="text-sm font-small">
-                      {income.description}
-                    </div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Category:</div>
-                    <div className="text-sm font-small">{income.category}</div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Amount:</div>
-                    <div className="text-sm font-small">
-                      {"$" + income.amount}
-                    </div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Recurrence:</div>
-                    <div className="text-sm font-small">{income.frequency}</div>
-                  </li>
-
-                  <li className="flex">
-                    <div className="text-sm font-medium mr-2">Date:</div>
-                    <div className="text-sm font-small">
-                      {income.targetDate}
-                    </div>
-                  </li>
-                </ul>
-
-                <button
-                  //pass income.id through delete function to delete specific income
-                  onClick={() => deleteIncome(income.id)}
-                  type="button"
-                  className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
+            {incomeData.slice(0, 3).map(function (income, key) {
+              return (
+                <div
+                  key={key}
+                  className="bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 m-4 relative"
                 >
-                  X
-                </button>
-              </div>
-            ))}
+                  <ul>
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">
+                        Description:
+                      </div>
+                      <div className="text-sm font-small">
+                        {income.description}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Category:</div>
+                      <div className="text-sm font-small">
+                        {income.category}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Amount:</div>
+                      <div className="text-sm font-small">
+                        {"$" + income.amount}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">
+                        Recurrence:
+                      </div>
+                      <div className="text-sm font-small">
+                        {income.frequency}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="text-sm font-medium mr-2">Date:</div>
+                      <div className="text-sm font-small">
+                        {income.targetDate}
+                      </div>
+                    </li>
+                  </ul>
+
+                  <button
+                    //pass income.id through delete function to delete specific income
+                    onClick={() => deleteIncome(income.id)}
+                    type="button"
+                    className="transition duration-300 h-7 w-7 text-red-700 hover:text-white border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm text-center absolute right-3 bottom-3"
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })}
           </ul>
+          <Link to="/overview">
+            <button className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-4 text-center">
+              View All
+            </button>
+          </Link>
         </div>
       </div>
     </>
