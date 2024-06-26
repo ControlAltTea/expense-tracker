@@ -2,7 +2,7 @@ import React from "react";
 
 function Team() {
   return (
-    <div className="min-h-[660px] flex flex-col justify-center sm:flex-col md:flex-row lg:flex-row">
+    <div className="min-h-[660px] flex flex-col justify-center sm:flex-col md:flex-row lg:flex-row mt-24">
       <div className="m-6">
         <div className="bg-green-100 rounded-lg shadow text-l font-medium h-fit  text-center p-4 mt-24 ">
           Vinson Han

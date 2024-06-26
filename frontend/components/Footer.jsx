@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-green-300 h-20 mt-24 flex items-center">
+    <footer className="bg-green-300 h-20 flex items-center">
       <div className="flex ml-8">
         <Link to={"/team"} className="flex items-center">
           <div>

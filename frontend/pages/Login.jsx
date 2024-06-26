@@ -112,7 +112,7 @@ function Login() {
 
   return (
     <>
-      <div className="login-container min-h-[600px]">
+      <div className="login-container min-h-[600px] mb-20">
         <div className="w-full h-fit max-w-sm p-4 mt-12 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-center">
             <form onSubmit={handleLogin}>
