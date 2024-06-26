@@ -319,7 +319,7 @@ function Overview() {
             onClick={handleSortDate}
             className="text-white bg-green-400 hover:bg-green-500 font-medium shadow rounded-lg min-w-40 p-3 m-6"
           >
-            Sort Date Alphabetically
+            Sort Date By Most Recent
           </button>
 
           <button
