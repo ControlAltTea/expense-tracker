@@ -319,7 +319,7 @@ function Overview() {
             onClick={handleSortDate}
             className="text-white bg-green-400 hover:bg-green-500 font-medium shadow rounded-lg min-w-40 p-3 m-6"
           >
-            Sort Date Alphabetically
+            Sort Date By Most Recent
           </button>
 
           <button
@@ -340,7 +340,7 @@ function Overview() {
         {/* /////////////////////////////////////////////////RENDERED SAVINGS/////////////////////////////////////////////// */}
 
         <div className="flex flex-col justify-evenly bg-[#f0f8ff] sm:flex-col md:flex-col lg:flex-row">
-          <div className="min-w-80 rounded-lg shadow bg-[#def7ec] m-6">
+          <div className="min-w-80 rounded-lg shadow bg-[#def7ec] m-6 min-h-screen">
             <div
               id="savingsSection"
               className="p-4 text-l font-medium bg-white border border-gray-200 rounded-lg text-center"
@@ -883,7 +883,7 @@ function Overview() {
           </div>
         </div>
         <ChatBar />
-        <div className="h-32"></div>
+
       </div>
     </>
   );

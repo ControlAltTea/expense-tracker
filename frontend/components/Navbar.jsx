@@ -38,24 +38,70 @@ function Navbar() {
 
       <ul className="flex">
         <li className="">
-          {loggedIn && <Link to="/dashboard">Dashboard</Link>}
+          {loggedIn && (
+            <Link to="/dashboard">
+              <div className="flex items-center">
+                <img
+                  className="h-[30px] mr-1"
+                  src="/public/Icons/dashboard.png"
+                />
+                <div>Dashboard</div>
+              </div>
+            </Link>
+          )}
         </li>
 
-        <li className="ml-8">
-          {loggedIn && <Link to="/overview">Overview</Link>}
+        <li className="ml-9">
+          {loggedIn && (
+            <Link to="/overview">
+              <div className="flex items-center">
+                <img
+                  className="h-[30px] mr-1"
+                  src="/public/Icons/overview.png"
+                />
+                <div>Overview</div>
+              </div>
+            </Link>
+          )}
         </li>
 
-        <li className="ml-2 mr-2">
-          {!loggedIn && <Link to="/login">Log In</Link>}
+        <li className="mr-6">
+          {!loggedIn && (
+            <Link to="/login">
+              <div className="flex items-center">
+                <img
+                  className="h-[30px] mr-2"
+                  src="/public/Icons/log-in1.png"
+                />
+                <div>Log In</div>
+              </div>
+            </Link>
+          )}
         </li>
-        <li className="ml-2 mr-2">
-          {!loggedIn && <Link to="/signup">Sign Up</Link>}
+        <li className="mr-2">
+          {!loggedIn && (
+            <Link to="/signup">
+              <div className="flex items-center">
+                <img
+                  className="h-[30px] mr-1"
+                  src="/public/Icons/sign-up.png"
+                />
+                <div>Sign Up</div>
+              </div>
+            </Link>
+          )}
         </li>
 
         {loggedIn && (
           <li className="mr-2">
             <button onClick={handleLogout} className="">
-              Log Out
+              <div className="flex items-center">
+                <img
+                  className="h-[30px] mr-1"
+                  src="/public/Icons/log-out.png"
+                />
+                <div>Log Out</div>
+              </div>
             </button>
           </li>
         )}
